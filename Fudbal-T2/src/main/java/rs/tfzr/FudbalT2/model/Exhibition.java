@@ -1,6 +1,7 @@
 package rs.tfzr.FudbalT2.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Exhibition extends AbstractBaseEntity {
 
@@ -15,6 +16,26 @@ public class Exhibition extends AbstractBaseEntity {
 	private Date exhibitionEnd;
 	
 	private boolean ended;
+	
+	private List<Scorers> scorers;
+	
+	private List<Player> players;
+	
+	public List<Player> getPlayers(){
+		return players;
+	}
+	
+	public void setPlayers(List<Player> players){
+		this.players = players;
+	}
+		
+	public List<Scorers> getScorers(){
+		return scorers;
+	}
+	
+	public void setScorers(List<Scorers> scorers){
+		this.scorers = scorers;
+	}
 	
 	public void setExhibitionStart(Date exhibitionStart){
 		this.exhibitionStart = exhibitionStart;
@@ -51,4 +72,6 @@ public class Exhibition extends AbstractBaseEntity {
         
         return true;
     }
+	
+	
 }
