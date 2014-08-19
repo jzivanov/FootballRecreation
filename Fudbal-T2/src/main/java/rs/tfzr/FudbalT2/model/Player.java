@@ -1,30 +1,24 @@
 package rs.tfzr.FudbalT2.model;
 
-public class Player extends AbstractBaseEntity
-{
+public class Player extends AbstractBaseEntity {
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public enum Team
-	{
-		None,
-		Home,
-		Away
+
+	public enum Team {
+		None, Home, Away
 	}
-	
-	public Player()
-	{
+
+	public Player() {
 		this.team = Team.None;
 	}
-	
-	public Player(User user)
-	{
+
+	public Player(User user) {
 		this();
 		this.user = user;
 	}
-	
+
 	private Team team;
 	private User user;
 	private Exhibition exhibition;
@@ -53,21 +47,24 @@ public class Player extends AbstractBaseEntity
 		this.exhibition = exhibition;
 	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		if (!super.equals(o))
+			return false;
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + user.hashCode();
-        result = 31 * result + exhibition.hashCode();
-        result = 31 * result + team.hashCode();
-        return result;
-    }
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + user.hashCode();
+		result = 31 * result + exhibition.hashCode();
+		result = 31 * result + team.hashCode();
+		return result;
+	}
 }

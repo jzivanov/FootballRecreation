@@ -10,68 +10,70 @@ public class Exhibition extends AbstractBaseEntity {
 	 */
 	private static final long serialVersionUID = 7168512930522429680L;
 
-	
 	private Date exhibitionStart;
-	
+
 	private Date exhibitionEnd;
-	
+
 	private boolean ended;
-	
+
 	private List<Scorers> scorers;
-	
+
 	private List<Player> players;
-	
-	public List<Player> getPlayers(){
+
+	public List<Player> getPlayers() {
 		return players;
 	}
-	
-	public void setPlayers(List<Player> players){
+
+	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}
-		
-	public List<Scorers> getScorers(){
+
+	public List<Scorers> getScorers() {
 		return scorers;
 	}
-	
-	public void setScorers(List<Scorers> scorers){
+
+	public void setScorers(List<Scorers> scorers) {
 		this.scorers = scorers;
 	}
-	
-	public void setExhibitionStart(Date exhibitionStart){
+
+	public void setExhibitionStart(Date exhibitionStart) {
 		this.exhibitionStart = exhibitionStart;
 	}
-	
-	public Date getExhibitionStart(){
+
+	public Date getExhibitionStart() {
 		return exhibitionStart;
 	}
-	
-	public void setExhibitionEnd(Date exhibitionEnd){
+
+	public void setExhibitionEnd(Date exhibitionEnd) {
 		this.exhibitionEnd = exhibitionEnd;
 	}
-	
-	public Date getExhibitionEnd(){
+
+	public Date getExhibitionEnd() {
 		return exhibitionEnd;
 	}
-	
-	public void setEnded(boolean ended){
+
+	public void setEnded(boolean ended) {
 		this.ended = ended;
 	}
-	
-	public boolean getEnded(){
+
+	public boolean getEnded() {
 		return ended;
 	}
-	
+
 	public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		if (!super.equals(o))
+			return false;
 
-        Exhibition exhibition = (Exhibition) o;
+		Exhibition exhibition = (Exhibition) o;
 
-        if (exhibitionStart != exhibition.exhibitionStart) return false;
-        
-        return true;
-    }
-	
-	
+		if (exhibitionStart != exhibition.exhibitionStart)
+			return false;
+
+		return true;
+	}
+
 }
