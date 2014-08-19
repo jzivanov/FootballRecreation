@@ -10,9 +10,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
-import rs.tfzr.FudbalT2.model.Scorers;
 import rs.tfzr.FudbalT2.repository.ExhibitionRepository;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
+import rs.tfzr.FudbalT2.service.PlayerService;
 
 /**
  * @author Miroslav
@@ -22,6 +22,9 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 
 	@Autowired
 	private ExhibitionRepository exhibitionRepository;
+	
+	@Autowired
+	private PlayerService playerService;
 
 	/*
 	 * (non-Javadoc)
@@ -77,16 +80,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		return null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#listAllScorers()
-	 */
-	@Override
-	public List<Scorers> listAllScorers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -121,6 +115,21 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		exhibition.getPlayers().remove(playerId.intValue());
 
 	}
+
+	@Override
+	public void addToTeam(Long playerId, int team) {
+		// TODO Auto-generated method stub
+		
+	}
+
+//	@Override
+//	public void addToTeam(Long playerId, Player.Team team) {
+//		Player player = playerService.findOne(playerId);
+//		
+//		
+//	}
+
+	
 
 	
 

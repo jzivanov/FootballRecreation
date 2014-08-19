@@ -18,10 +18,6 @@ public interface ExhibitionService extends CrudService<Exhibition> {
 	// @returns list of players
 	List<Player> listAllPlayers();
 
-	// Returns all scorers in one exhibition
-	// @returns list of scorers
-	List<Scorers> listAllScorers();
-
 	// Add a new player to the exhibition
 	// @param exhibition to which the player is added
 	void addPlayer(Exhibition exhibition);
@@ -31,5 +27,6 @@ public interface ExhibitionService extends CrudService<Exhibition> {
 	// @param exhibition from which he is going to be removed
 	void removePlayer(Long playerId, Exhibition exhibition);
 
-	
+	void addToTeam(Long playerId, int team);
+
 }
