@@ -2,9 +2,8 @@ package rs.tfzr.FudbalT2.model;
 
 public class MVP extends AbstractBaseEntity
 {
-
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -21,6 +20,16 @@ public class MVP extends AbstractBaseEntity
 	}
 	public void setExhibition(Exhibition exhibition) {
 		this.exhibition = exhibition;
+	}
+	
+	public MVP()
+	{
+		
+	}
+	
+	public MVP(Player player)
+	{
+		this.player = player;
 	}
 
     @Override
