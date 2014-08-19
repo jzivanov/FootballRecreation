@@ -72,17 +72,6 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#listAllPlayers()
-	 */
-	@Override
-	public List<Player> listAllPlayers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see
 	 * rs.tfzr.FudbalT2.service.ExhibitionService#addPlayer(rs.tfzr.FudbalT2
 	 * .model.Exhibition)

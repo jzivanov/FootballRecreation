@@ -13,9 +13,9 @@ import rs.tfzr.FudbalT2.model.Player;
  *
  */
 public interface ExhibitionService extends CrudService<Exhibition> {
-	// Returns all players in one exhibition
-	// @returns list of players
-	List<Player> listAllPlayers();
+	// Returns all players in one exhibition          //
+	// @returns list of players                       //  Not sure about this
+	//List<Player> listAllPlayers();                 //
 
 	// Add a new player to the exhibition
 	// @param exhibition to which the player is added
