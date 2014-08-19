@@ -26,6 +26,9 @@ public interface ExhibitionService extends CrudService<Exhibition> {
 	// @param exhibition from which he is going to be removed
 	void removePlayer(Long playerId, Exhibition exhibition);
 
+	//adds the player to the team
+	//@param playerId - player that needs to be assigned to the team
+	//@param team - enum type team that the player needs to be added to [None, Home, Away]
 	void addToTeam(Long playerId, Player.Team team);
 
 }
