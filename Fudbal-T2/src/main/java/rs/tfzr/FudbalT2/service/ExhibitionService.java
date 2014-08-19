@@ -7,6 +7,7 @@ import java.util.List;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.Scorers;
 
 /**
  * @author Miroslav
@@ -16,6 +17,10 @@ public interface ExhibitionService extends CrudService<Exhibition> {
 	// Returns all players in one exhibition
 	// @returns list of players
 	List<Player> listAllPlayers();
+
+	// Returns all scorers in one exhibition
+	// @returns list of scorers
+	List<Scorers> listAllScorers();
 
 	// Add a new player to the exhibition
 	// @param exhibition to which the player is added
