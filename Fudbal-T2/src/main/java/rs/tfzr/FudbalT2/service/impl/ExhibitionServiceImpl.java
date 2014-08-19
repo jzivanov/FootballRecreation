@@ -13,7 +13,6 @@ import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.repository.ExhibitionRepository;
 import rs.tfzr.FudbalT2.repository.PlayerRepository;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
-import rs.tfzr.FudbalT2.service.PlayerService;
 
 /**
  * @author Miroslav
@@ -23,7 +22,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 
 	@Autowired
 	private ExhibitionRepository exhibitionRepository;
-	
+
 	@Autowired
 	private PlayerRepository playerRepository;
 
@@ -81,8 +80,6 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		return null;
 	}
 
-	
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -121,15 +118,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public void addToTeam(Long playerId, Player.Team team) {
 		Player player = playerRepository.findOne(playerId);
 		player.setTeam(team);
-		
+
 	}
-
-
-
-	
-
-	
-
-	
 
 }
