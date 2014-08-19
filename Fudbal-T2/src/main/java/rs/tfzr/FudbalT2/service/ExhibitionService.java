@@ -27,6 +27,6 @@ public interface ExhibitionService extends CrudService<Exhibition> {
 	// @param exhibition from which he is going to be removed
 	void removePlayer(Long playerId, Exhibition exhibition);
 
-	void addToTeam(Long playerId, int team);
+	void addToTeam(Long playerId, Player.Team team);
 
 }

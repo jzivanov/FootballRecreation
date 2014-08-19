@@ -117,17 +117,13 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public void addToTeam(Long playerId, int team) {
-		// TODO Auto-generated method stub
+	public void addToTeam(Long playerId, Player.Team team) {
+		Player player = playerService.findOne(playerId);
+		player.setTeam(team);
 		
 	}
 
-//	@Override
-//	public void addToTeam(Long playerId, Player.Team team) {
-//		Player player = playerService.findOne(playerId);
-//		
-//		
-//	}
+
 
 	
 
