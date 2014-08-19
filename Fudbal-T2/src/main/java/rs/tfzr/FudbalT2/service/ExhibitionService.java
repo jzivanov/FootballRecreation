@@ -19,7 +19,7 @@ public interface ExhibitionService extends CrudService<Exhibition> {
 
 	// Add a new player to the exhibition
 	// @param exhibition to which the player is added
-	void addPlayer(Exhibition exhibition);
+	void addPlayer(Exhibition exhibition, Long userId);
 
 	// removes a player from the exhibition
 	// @param playerId - id of the player that is supposed to be removed

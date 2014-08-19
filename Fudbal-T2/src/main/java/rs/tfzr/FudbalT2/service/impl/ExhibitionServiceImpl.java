@@ -81,8 +81,9 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	 */
 	@Override
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public void addPlayer(Exhibition exhibition) {
+	public void addPlayer(Exhibition exhibition, Long userId) {
 		Player player = new Player();
+		player.setId(userId);
 		exhibition.getPlayers().add(player);
 
 	}

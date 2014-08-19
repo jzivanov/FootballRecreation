@@ -23,8 +23,9 @@ public class InMemoryExhibitionService extends AbstractInMemoryService<Exhibitio
 	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#addPlayer(rs.tfzr.FudbalT2.model.Exhibition)
 	 */
 	@Override
-	public void addPlayer(Exhibition exhibition) {
+	public void addPlayer(Exhibition exhibition, Long userId) {
 		Player player = new Player();
+		player.setId(new Long(exhibition.getPlayers().size()));
 		exhibition.getPlayers().add(player);
 
 	}
