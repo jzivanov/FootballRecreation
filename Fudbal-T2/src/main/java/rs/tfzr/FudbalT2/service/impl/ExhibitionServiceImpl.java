@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.repository.ExhibitionRepository;
+import rs.tfzr.FudbalT2.repository.PlayerRepository;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.PlayerService;
 
@@ -24,7 +25,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	private ExhibitionRepository exhibitionRepository;
 	
 	@Autowired
-	private PlayerService playerService;
+	private PlayerRepository playerRepository;
 
 	/*
 	 * (non-Javadoc)
@@ -118,7 +119,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 
 	@Override
 	public void addToTeam(Long playerId, Player.Team team) {
-		Player player = playerService.findOne(playerId);
+		Player player = playerRepository.findOne(playerId);
 		player.setTeam(team);
 		
 	}
