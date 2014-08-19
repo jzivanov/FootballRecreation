@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
@@ -18,6 +19,8 @@ import rs.tfzr.FudbalT2.service.ExhibitionService;
  * @author Miroslav
  *
  */
+
+@Service
 public class ExhibitionServiceImpl implements ExhibitionService {
 
 	@Autowired
