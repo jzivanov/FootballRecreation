@@ -38,4 +38,9 @@ public class PlayerServiceImpl implements PlayerService
 		playerRepository.delete(id);
 	}
 
+	@Override
+	public List<Player> listAllPlayersOfExhibition(Long exhibitionId) {
+		return playerRepository.listAllPlayersOfExhibition(exhibitionId);
+	}
+
 }

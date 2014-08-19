@@ -43,4 +43,12 @@ public interface PlayerRepository extends Repository<Player, Long>
      * @throws IllegalArgumentException if there is no entity with passed id
      */
     void delete(Long id) throws IllegalArgumentException;
+    
+    /**
+     * List of all players at Exhibition
+     * 
+     * @param exhibitionId
+     * @return list of all players at Exhibition, IllegalArgumentException if there is no entity with passed id
+     */
+    List<Player> listAllPlayersOfExhibition(Long exhibitionId);
 }
