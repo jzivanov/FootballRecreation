@@ -9,17 +9,19 @@ public class Player extends AbstractBaseEntity
 	
 	public enum Team
 	{
+		None,
 		Home,
 		Away
 	}
 	
 	public Player()
 	{
-		
+		this.team = Team.None;
 	}
 	
 	public Player(User user)
 	{
+		this();
 		this.user = user;
 	}
 	
