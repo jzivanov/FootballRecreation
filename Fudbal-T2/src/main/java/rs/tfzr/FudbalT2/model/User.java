@@ -62,5 +62,21 @@ public class User extends AbstractBaseEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		if (!super.equals(o))
+			return false;
+
+		User user = (User) o;
+
+		if (email != user.email)
+			return false;
+
+		return true;
+	}
 
 }
