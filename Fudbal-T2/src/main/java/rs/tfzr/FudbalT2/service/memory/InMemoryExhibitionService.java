@@ -55,8 +55,8 @@ public class InMemoryExhibitionService extends
 					"Error: Tried to delete non-existing entity with id=%d.",
 					playerId));
 		}
-		playerService.remove(playerId);
 		Player player = playerService.findOne(playerId);
+		playerService.remove(playerId);
 		exhibition.removePlayer(player);
 
 	}
@@ -65,7 +65,7 @@ public class InMemoryExhibitionService extends
 		this.playerService = playerService;
 
 	}
-	
+
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
