@@ -87,9 +87,9 @@ public class InMemoryExhibitionServiceTest {
 		Assert.assertNotNull(exhibition.getPlayers());
 		Assert.assertTrue(exhibition.getPlayers().size() == 1);
 		Assert.assertNotNull(exhibition.getPlayers().get(0));
-		
+
 		inMemoryExhibitionService.removePlayer(1L, exhibition);
-		
+
 		Assert.assertNotNull(exhibition.getPlayers());
 		Assert.assertTrue(exhibition.getPlayers().size() == 0);
 	}
@@ -101,7 +101,14 @@ public class InMemoryExhibitionServiceTest {
 	 */
 	@Test
 	public void testAddToTeam() {
-		fail("Not yet implemented");
+		Exhibition exhibition = inMemoryExhibitionService.findOne(1L);
+
+		inMemoryExhibitionService.addPlayer(exhibition, 1L);
+		Player player = exhibition.getPlayers().get(0);
+		player.setTeam(Player.Team.Home);
+		Assert.assertNotNull(player.getTeam());
+		
+
 	}
 
 }
