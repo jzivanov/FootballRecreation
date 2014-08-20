@@ -24,9 +24,12 @@ public class Exhibition extends AbstractBaseEntity {
 	public List<Player> getPlayers() {
 		return players;
 	}
+	
+	public Exhibition(){
+		players = new ArrayList<Player>();
+	}
 
 	public void addPlayer(Player player){
-		players = new ArrayList<Player>();
 		this.players.add(player);
 	}
 	

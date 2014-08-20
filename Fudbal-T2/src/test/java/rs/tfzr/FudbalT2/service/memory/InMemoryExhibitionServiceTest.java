@@ -72,7 +72,7 @@ public class InMemoryExhibitionServiceTest {
 
 		inMemoryExhibitionService.addPlayer(exhibition, 1L);
 		
-		Assert.assertNotNull(exhibition.getPlayers());
+	    Assert.assertNotNull(exhibition.getPlayers());
 		Assert.assertTrue(exhibition.getPlayers().size() == 1);
 		Assert.assertNotNull(exhibition.getPlayers().get(0));
 	}
