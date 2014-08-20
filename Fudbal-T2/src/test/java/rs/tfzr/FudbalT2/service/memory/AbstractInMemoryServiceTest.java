@@ -17,7 +17,8 @@ import rs.tfzr.FudbalT2.service.CrudService;
 public class AbstractInMemoryServiceTest {
 
 	/**
-	 * Inner class which extends {@link AbstractBaseEntity} used as type for {@link CrudService}.
+	 * Inner class which extends {@link AbstractBaseEntity} used as type for
+	 * {@link CrudService}.
 	 * 
 	 * @author d.gajic
 	 */
@@ -31,7 +32,9 @@ public class AbstractInMemoryServiceTest {
 	 * 
 	 * @author d.gajic
 	 */
-	private static class NamedService extends AbstractInMemoryService<NamedEntity> implements CrudService<NamedEntity> {
+	private static class NamedService extends
+			AbstractInMemoryService<NamedEntity> implements
+			CrudService<NamedEntity> {
 	}
 
 	/**
@@ -97,7 +100,8 @@ public class AbstractInMemoryServiceTest {
 		NamedEntity saved = service.save(e);
 
 		Assert.assertNotNull(saved.getId());
-		Assert.assertEquals("New NamedEntity", service.findOne(saved.getId()).name);
+		Assert.assertEquals("New NamedEntity",
+				service.findOne(saved.getId()).name);
 	}
 
 	/**

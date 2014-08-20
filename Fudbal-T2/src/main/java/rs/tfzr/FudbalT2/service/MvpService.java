@@ -7,8 +7,7 @@ import rs.tfzr.FudbalT2.model.MVP;
  * @author jovan
  *
  */
-public interface MvpService extends CrudService<MVP>
-{
+public interface MvpService extends CrudService<MVP> {
 	/**
 	 * 
 	 * @param ExhibitionId

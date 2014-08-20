@@ -34,9 +34,8 @@ public class MVP extends AbstractBaseEntity {
 		exhibition = new Exhibition();
 		this.player = player;
 	}
-	
-	public MVP(Player player, Exhibition exhibition)
-	{
+
+	public MVP(Player player, Exhibition exhibition) {
 		this.player = player;
 		this.exhibition = exhibition;
 	}

@@ -21,8 +21,8 @@ public abstract class AbstractBaseEntity implements Serializable {
 	/**
 	 * Primary key
 	 */
-    @Id
-    @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 
 	/**

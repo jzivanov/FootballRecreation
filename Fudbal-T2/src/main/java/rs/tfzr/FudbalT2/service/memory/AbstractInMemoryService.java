@@ -16,7 +16,8 @@ import rs.tfzr.FudbalT2.service.CrudService;
  * 
  * @param <T>
  */
-public abstract class AbstractInMemoryService<T extends AbstractBaseEntity> implements CrudService<T> {
+public abstract class AbstractInMemoryService<T extends AbstractBaseEntity>
+		implements CrudService<T> {
 
 	protected static final String NON_EXISTING_ENTITY = "Error: Tried to remove non-existing entity with id=%d.";
 
@@ -65,7 +66,8 @@ public abstract class AbstractInMemoryService<T extends AbstractBaseEntity> impl
 	public void remove(Long id) throws IllegalArgumentException {
 		T t = map.remove(id);
 		if (t == null) {
-			throw new IllegalArgumentException(String.format(NON_EXISTING_ENTITY, id));
+			throw new IllegalArgumentException(String.format(
+					NON_EXISTING_ENTITY, id));
 		}
 	}
 }

@@ -62,7 +62,7 @@ public class User extends AbstractBaseEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;

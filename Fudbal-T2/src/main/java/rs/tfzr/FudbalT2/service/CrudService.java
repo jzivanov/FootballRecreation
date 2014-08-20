@@ -16,7 +16,8 @@ public interface CrudService<T extends AbstractBaseEntity> {
 	/**
 	 * Find and return entity with passed id.
 	 * 
-	 * @param id of the entity to return
+	 * @param id
+	 *            of the entity to return
 	 * @return entity with passed id or null if not found
 	 */
 	T findOne(Long id);
@@ -31,7 +32,8 @@ public interface CrudService<T extends AbstractBaseEntity> {
 	/**
 	 * Save entity and return saved instance (with id set).
 	 * 
-	 * @param entity to be saved
+	 * @param entity
+	 *            to be saved
 	 * @return saved instance
 	 */
 	T save(T t);
@@ -39,8 +41,10 @@ public interface CrudService<T extends AbstractBaseEntity> {
 	/**
 	 * Remove entity with passed id.
 	 * 
-	 * @param id of the entity to be removed
-	 * @throws IllegalArgumentException if there is no entity with passed id
+	 * @param id
+	 *            of the entity to be removed
+	 * @throws IllegalArgumentException
+	 *             if there is no entity with passed id
 	 */
 	void remove(Long id) throws IllegalArgumentException;
 }

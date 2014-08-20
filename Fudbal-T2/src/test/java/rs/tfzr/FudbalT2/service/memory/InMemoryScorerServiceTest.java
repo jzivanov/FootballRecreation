@@ -17,15 +17,13 @@ import rs.tfzr.FudbalT2.model.User;
  * 
  * @author jovan
  */
-public class InMemoryScorerServiceTest 
-{
+public class InMemoryScorerServiceTest {
 	InMemoryScorerService service;
-	
+
 	@Before
-	public void setUp()
-	{
+	public void setUp() {
 		service = new InMemoryScorerService();
-		
+
 		Exhibition exhibition = new Exhibition();
 		exhibition.setId(1L);
 		User user = new User();
@@ -42,7 +40,7 @@ public class InMemoryScorerServiceTest
 		scorer.setId(1L);
 		scorer.setExhibition(exhibition);
 		scorer.setPlayer(player);
-		
+
 		// 2
 		Exhibition exhibition2 = new Exhibition();
 		exhibition2.setId(2L);
@@ -60,7 +58,7 @@ public class InMemoryScorerServiceTest
 		scorer2.setId(2L);
 		scorer2.setExhibition(exhibition2);
 		scorer2.setPlayer(player2);
-		
+
 		// 3
 		Exhibition exhibition3 = new Exhibition();
 		exhibition3.setId(3L);
@@ -73,7 +71,6 @@ public class InMemoryScorerServiceTest
 		scorer3.setId(3L);
 		scorer3.setExhibition(exhibition3);
 		scorer3.setPlayer(player3);
-		
 
 		Player player4 = new Player();
 		player4.setId(4L);
@@ -83,42 +80,38 @@ public class InMemoryScorerServiceTest
 		scorer4.setId(4L);
 		scorer4.setExhibition(exhibition3);
 		scorer4.setPlayer(player4);
-		
+
 		service.save(scorer);
 		service.save(scorer2);
 		service.save(scorer3);
 		service.save(scorer4);
 	}
 
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testFindByScorerId() {
+		Scorers scorer = service.findOne(1L);
+
+		Assert.assertNotNull(scorer);
+		Assert.assertTrue(scorer.getPlayer().getId() == 1L);
+
+		scorer = service.findOne(33L);
+
+		Assert.assertNull(scorer);
+	}
 
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testFindByScorerId() 
-	{
-		Scorers scorer = service.findOne(1L);
-		
-		Assert.assertNotNull(scorer);
-		Assert.assertTrue(scorer.getPlayer().getId() == 1L);
-		
-		scorer = service.findOne(33L);
-		
-		Assert.assertNull(scorer);
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testFindAllScorers()
-	{
+	public void testFindAllScorers() {
 		List<Scorers> list = service.listAllScorers(1L);
 		Assert.assertTrue(list.size() == 1);
 		list = service.listAllScorers(3L);
 		Assert.assertTrue(list.size() == 2);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Test
-	public void testRankList()
-	{
+	public void testRankList() {
 		List<Scorers> list = service.getRankList();
 		Assert.assertNotNull(list);
 		Assert.assertEquals(2, list.size());

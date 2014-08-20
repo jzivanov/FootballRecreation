@@ -8,11 +8,10 @@ import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.repository.PlayerRepository;
 import rs.tfzr.FudbalT2.service.PlayerService;
 
-public class PlayerServiceImpl implements PlayerService
-{
+public class PlayerServiceImpl implements PlayerService {
 	@Autowired
 	PlayerRepository playerRepository;
-	
+
 	@Override
 	public Player findOne(Long id) {
 		return playerRepository.findOne(id);
@@ -31,9 +30,9 @@ public class PlayerServiceImpl implements PlayerService
 	@Override
 	public void remove(Long id) throws IllegalArgumentException {
 		Player player = playerRepository.findOne(id);
-		if(player == null)
-		{
-            throw new IllegalArgumentException("Player with id " + id + " does not exist.");
+		if (player == null) {
+			throw new IllegalArgumentException("Player with id " + id
+					+ " does not exist.");
 		}
 		playerRepository.delete(id);
 	}

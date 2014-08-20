@@ -20,16 +20,14 @@ public class Player extends AbstractBaseEntity {
 		this();
 		this.user = user;
 	}
-	
-	public Player(User user, Exhibition exhibition)
-	{
+
+	public Player(User user, Exhibition exhibition) {
 		this();
 		this.user = user;
 		this.exhibition = exhibition;
 	}
-	
-	public Player(User user, Exhibition exhibition, Team team)
-	{
+
+	public Player(User user, Exhibition exhibition, Team team) {
 		this.user = user;
 		this.exhibition = exhibition;
 		this.team = team;
