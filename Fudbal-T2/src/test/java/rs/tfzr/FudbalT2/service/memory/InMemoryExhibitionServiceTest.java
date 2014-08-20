@@ -33,6 +33,7 @@ public class InMemoryExhibitionServiceTest {
 	public void setUp() throws Exception {
 		inMemoryExhibitionService = new InMemoryExhibitionService();
 		inMemoryUserService = new InMemoryUserService();
+		inMemoryPlayerService = new InMemoryPlayerService();
 		inMemoryExhibitionService.setUserService(inMemoryUserService);
 		inMemoryExhibitionService.setPlayerService(inMemoryPlayerService);
 		Exhibition exhibition = new Exhibition();
