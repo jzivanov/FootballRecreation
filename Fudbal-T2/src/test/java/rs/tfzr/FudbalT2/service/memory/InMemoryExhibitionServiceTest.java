@@ -18,7 +18,6 @@ public class InMemoryExhibitionServiceTest {
 
 	private InMemoryExhibitionService inMemoryService;
 
-
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -29,7 +28,9 @@ public class InMemoryExhibitionServiceTest {
 	}
 
 	/**
-	 * Test method for {@link rs.tfzr.FudbalT2.service.memory.InMemoryExhibitionService#addPlayer(rs.tfzr.FudbalT2.model.Exhibition, java.lang.Long)}.
+	 * Test method for
+	 * {@link rs.tfzr.FudbalT2.service.memory.InMemoryExhibitionService#addPlayer(rs.tfzr.FudbalT2.model.Exhibition, java.lang.Long)}
+	 * .
 	 */
 	@Test
 	public void testAddPlayer() {
@@ -37,16 +38,19 @@ public class InMemoryExhibitionServiceTest {
 	}
 
 	/**
-	 * Test method for {@link rs.tfzr.FudbalT2.service.memory.InMemoryExhibitionService#removePlayer(java.lang.Long, rs.tfzr.FudbalT2.model.Exhibition)}.
+	 * Test method for
+	 * {@link rs.tfzr.FudbalT2.service.memory.InMemoryExhibitionService#removePlayer(java.lang.Long, rs.tfzr.FudbalT2.model.Exhibition)}
+	 * .
 	 */
 	@Test
 	public void testRemovePlayer() {
 		fail("Not yet implemented");
 	}
 
-	
 	/**
-	 * Test method for {@link rs.tfzr.FudbalT2.service.memory.InMemoryExhibitionService#addToTeam(java.lang.Long, rs.tfzr.FudbalT2.model.Player.Team)}.
+	 * Test method for
+	 * {@link rs.tfzr.FudbalT2.service.memory.InMemoryExhibitionService#addToTeam(java.lang.Long, rs.tfzr.FudbalT2.model.Player.Team)}
+	 * .
 	 */
 	@Test
 	public void testAddToTeam() {

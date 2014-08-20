@@ -13,6 +13,7 @@ import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.PlayerService;
+import rs.tfzr.FudbalT2.service.UserService;
 
 /**
  * @author Miroslav
@@ -20,12 +21,19 @@ import rs.tfzr.FudbalT2.service.PlayerService;
  */
 
 @Service
-public class InMemoryExhibitionService extends AbstractInMemoryService<Exhibition>  implements ExhibitionService {
+public class InMemoryExhibitionService extends
+		AbstractInMemoryService<Exhibition> implements ExhibitionService {
 
 	private PlayerService playerService;
-	//private UserService userService;
-	/* (non-Javadoc)
-	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#addPlayer(rs.tfzr.FudbalT2.model.Exhibition)
+
+	private UserService userService;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * rs.tfzr.FudbalT2.service.ExhibitionService#addPlayer(rs.tfzr.FudbalT2
+	 * .model.Exhibition)
 	 */
 	@Override
 	public void addPlayer(Exhibition exhibition, Long userId) {
@@ -35,8 +43,12 @@ public class InMemoryExhibitionService extends AbstractInMemoryService<Exhibitio
 		playerService.save(player);
 	}
 
-	/* (non-Javadoc)
-	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#removePlayer(java.lang.Long, rs.tfzr.FudbalT2.model.Exhibition)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * rs.tfzr.FudbalT2.service.ExhibitionService#removePlayer(java.lang.Long,
+	 * rs.tfzr.FudbalT2.model.Exhibition)
 	 */
 	@Override
 	public void removePlayer(Long playerId, Exhibition exhibition) {
@@ -46,23 +58,24 @@ public class InMemoryExhibitionService extends AbstractInMemoryService<Exhibitio
 					playerId));
 		}
 		playerService.remove(playerId);
-		
 
 	}
-	
-	public void setPlayerService(PlayerService playerService){
+
+	public void setPlayerService(PlayerService playerService) {
 		this.playerService = playerService;
-		
+
 	}
 
-	/* (non-Javadoc)
-	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#addToTeam(java.lang.Long, rs.tfzr.FudbalT2.model.Player.Team)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#addToTeam(java.lang.Long,
+	 * rs.tfzr.FudbalT2.model.Player.Team)
 	 */
 	@Override
 	public void addToTeam(Long playerId, Player.Team team) {
 		Player player = playerService.findOne(playerId);
 		player.setTeam(team);
-
 
 	}
 
