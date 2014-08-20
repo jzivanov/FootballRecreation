@@ -33,6 +33,10 @@ public class Exhibition extends AbstractBaseEntity {
 		this.players.add(player);
 	}
 	
+	public void removePlayer(Player player){
+		players.remove(player);
+	}
+	
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}

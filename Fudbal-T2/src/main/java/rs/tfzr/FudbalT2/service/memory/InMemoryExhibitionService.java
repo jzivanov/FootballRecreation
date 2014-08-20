@@ -50,12 +50,14 @@ public class InMemoryExhibitionService extends
 	 */
 	@Override
 	public void removePlayer(Long playerId, Exhibition exhibition) {
-		if (playerId == null || playerId > exhibition.getPlayers().size() - 1) {
+		if (playerId == null || playerId > exhibition.getPlayers().size()) {
 			throw new IllegalArgumentException(String.format(
 					"Error: Tried to delete non-existing entity with id=%d.",
 					playerId));
 		}
 		playerService.remove(playerId);
+		Player player = playerService.findOne(playerId);
+		exhibition.removePlayer(player);
 
 	}
 

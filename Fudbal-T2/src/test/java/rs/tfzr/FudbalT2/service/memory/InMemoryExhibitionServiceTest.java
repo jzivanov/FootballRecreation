@@ -24,7 +24,6 @@ public class InMemoryExhibitionServiceTest {
 	private InMemoryExhibitionService inMemoryExhibitionService;
 	private InMemoryUserService inMemoryUserService;
 	private InMemoryPlayerService inMemoryPlayerService;
-	
 
 	/**
 	 * @throws java.lang.Exception
@@ -41,7 +40,7 @@ public class InMemoryExhibitionServiceTest {
 		Player player = new Player();
 
 		exhibition.setId(1L);
-		
+
 		exhibition.setExhibitionStart(new Date());
 
 		user.setId(1L);
@@ -52,7 +51,7 @@ public class InMemoryExhibitionServiceTest {
 		player.setId(1L);
 		player.setUser(user);
 		player.setExhibition(exhibition);
-		
+
 		inMemoryExhibitionService.save(exhibition);
 		inMemoryUserService.save(user);
 		inMemoryPlayerService.save(player);
@@ -66,13 +65,10 @@ public class InMemoryExhibitionServiceTest {
 	@Test
 	public void testAddPlayer() {
 		Exhibition exhibition = inMemoryExhibitionService.findOne(1L);
-		
-//		Assert.assertNotNull(exhibition.getPlayers());
-//		Assert.assertTrue(exhibition.getPlayers().size() == 0);
 
 		inMemoryExhibitionService.addPlayer(exhibition, 1L);
-		
-	    Assert.assertNotNull(exhibition.getPlayers());
+
+		Assert.assertNotNull(exhibition.getPlayers());
 		Assert.assertTrue(exhibition.getPlayers().size() == 1);
 		Assert.assertNotNull(exhibition.getPlayers().get(0));
 	}
@@ -84,7 +80,18 @@ public class InMemoryExhibitionServiceTest {
 	 */
 	@Test
 	public void testRemovePlayer() {
-		fail("Not yet implemented");
+		Exhibition exhibition = inMemoryExhibitionService.findOne(1L);
+
+		inMemoryExhibitionService.addPlayer(exhibition, 1L);
+
+		Assert.assertNotNull(exhibition.getPlayers());
+		Assert.assertTrue(exhibition.getPlayers().size() == 1);
+		Assert.assertNotNull(exhibition.getPlayers().get(0));
+		
+		inMemoryExhibitionService.removePlayer(1L, exhibition);
+		
+		Assert.assertNotNull(exhibition.getPlayers());
+		Assert.assertTrue(exhibition.getPlayers().size() == 0);
 	}
 
 	/**
