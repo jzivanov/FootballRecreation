@@ -38,6 +38,7 @@ public class InMemoryExhibitionService extends
 		Player player = new Player(user, exhibition);
 		player.setId(new Long(playerService.findAll().size()));
 		playerService.save(player);
+		exhibition.addPlayer(player);
 	}
 
 	/*

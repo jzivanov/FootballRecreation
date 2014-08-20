@@ -1,5 +1,6 @@
 package rs.tfzr.FudbalT2.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class Exhibition extends AbstractBaseEntity {
 		return players;
 	}
 
+	public void addPlayer(Player player){
+		players = new ArrayList<Player>();
+		this.players.add(player);
+	}
+	
 	public void setPlayers(List<Player> players) {
 		this.players = players;
 	}

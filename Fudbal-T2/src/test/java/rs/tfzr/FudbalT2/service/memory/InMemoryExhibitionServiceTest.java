@@ -41,6 +41,7 @@ public class InMemoryExhibitionServiceTest {
 		Player player = new Player();
 
 		exhibition.setId(1L);
+		
 		exhibition.setExhibitionStart(new Date());
 
 		user.setId(1L);
@@ -54,6 +55,7 @@ public class InMemoryExhibitionServiceTest {
 		
 		inMemoryExhibitionService.save(exhibition);
 		inMemoryUserService.save(user);
+		inMemoryPlayerService.save(player);
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class InMemoryExhibitionServiceTest {
 //		Assert.assertTrue(exhibition.getPlayers().size() == 0);
 
 		inMemoryExhibitionService.addPlayer(exhibition, 1L);
-
+		
 		Assert.assertNotNull(exhibition.getPlayers());
 		Assert.assertTrue(exhibition.getPlayers().size() == 1);
 		Assert.assertNotNull(exhibition.getPlayers().get(0));
