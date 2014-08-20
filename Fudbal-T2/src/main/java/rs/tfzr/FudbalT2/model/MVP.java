@@ -32,6 +32,12 @@ public class MVP extends AbstractBaseEntity {
 	public MVP(Player player) {
 		this.player = player;
 	}
+	
+	public MVP(Player player, Exhibition exhibition)
+	{
+		this.player = player;
+		this.exhibition = exhibition;
+	}
 
 	@Override
 	public boolean equals(Object o) {
