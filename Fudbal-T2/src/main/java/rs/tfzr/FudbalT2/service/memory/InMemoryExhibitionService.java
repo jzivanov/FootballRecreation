@@ -62,6 +62,10 @@ public class InMemoryExhibitionService extends
 		this.playerService = playerService;
 
 	}
+	
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 
 	/*
 	 * (non-Javadoc)

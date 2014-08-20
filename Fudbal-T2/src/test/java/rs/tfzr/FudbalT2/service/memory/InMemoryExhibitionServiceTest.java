@@ -23,6 +23,7 @@ public class InMemoryExhibitionServiceTest {
 
 	private InMemoryExhibitionService inMemoryExhibitionService;
 	private InMemoryUserService inMemoryUserService;
+	private InMemoryPlayerService inMemoryPlayerService;
 	
 
 	/**
@@ -32,6 +33,8 @@ public class InMemoryExhibitionServiceTest {
 	public void setUp() throws Exception {
 		inMemoryExhibitionService = new InMemoryExhibitionService();
 		inMemoryUserService = new InMemoryUserService();
+		inMemoryExhibitionService.setUserService(inMemoryUserService);
+		inMemoryExhibitionService.setPlayerService(inMemoryPlayerService);
 		Exhibition exhibition = new Exhibition();
 		User user = new User();
 		Player player = new Player();
