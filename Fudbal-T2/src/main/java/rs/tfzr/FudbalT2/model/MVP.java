@@ -26,10 +26,12 @@ public class MVP extends AbstractBaseEntity {
 	}
 
 	public MVP() {
-
+		player = new Player();
+		exhibition = new Exhibition();
 	}
 
 	public MVP(Player player) {
+		exhibition = new Exhibition();
 		this.player = player;
 	}
 	

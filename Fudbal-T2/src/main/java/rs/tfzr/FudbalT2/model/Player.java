@@ -12,6 +12,8 @@ public class Player extends AbstractBaseEntity {
 
 	public Player() {
 		this.team = Team.None;
+		this.user = new User();
+		this.exhibition = new Exhibition();
 	}
 
 	public Player(User user) {
