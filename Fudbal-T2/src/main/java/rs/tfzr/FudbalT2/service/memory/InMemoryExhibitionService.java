@@ -3,9 +3,6 @@
  */
 package rs.tfzr.FudbalT2.service.memory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import rs.tfzr.FudbalT2.model.Exhibition;

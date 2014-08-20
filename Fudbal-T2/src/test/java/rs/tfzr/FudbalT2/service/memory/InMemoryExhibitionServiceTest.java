@@ -31,6 +31,7 @@ public class InMemoryExhibitionServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		inMemoryExhibitionService = new InMemoryExhibitionService();
+		inMemoryUserService = new InMemoryUserService();
 		Exhibition exhibition = new Exhibition();
 		User user = new User();
 		Player player = new Player();
