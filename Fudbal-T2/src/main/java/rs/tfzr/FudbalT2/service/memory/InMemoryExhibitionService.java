@@ -3,10 +3,14 @@
  */
 package rs.tfzr.FudbalT2.service.memory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.PlayerService;
 
@@ -19,15 +23,16 @@ import rs.tfzr.FudbalT2.service.PlayerService;
 public class InMemoryExhibitionService extends AbstractInMemoryService<Exhibition>  implements ExhibitionService {
 
 	private PlayerService playerService;
+	//private UserService userService;
 	/* (non-Javadoc)
 	 * @see rs.tfzr.FudbalT2.service.ExhibitionService#addPlayer(rs.tfzr.FudbalT2.model.Exhibition)
 	 */
 	@Override
 	public void addPlayer(Exhibition exhibition, Long userId) {
-		Player player = new Player();
+		User user = userService.findOne(userId);
+		Player player = new Player(user, exhibition);
 		player.setId(new Long(exhibition.getPlayers().size()));
-		exhibition.getPlayers().add(player);
-
+		playerService.save(player);
 	}
 
 	/* (non-Javadoc)
@@ -40,7 +45,8 @@ public class InMemoryExhibitionService extends AbstractInMemoryService<Exhibitio
 					"Error: Tried to delete non-existing entity with id=%d.",
 					playerId));
 		}
-		exhibition.getPlayers().remove(playerId.intValue());
+		playerService.remove(playerId);
+		
 
 	}
 	
