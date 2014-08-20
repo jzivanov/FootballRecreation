@@ -104,7 +104,7 @@ public class InMemoryExhibitionServiceTest {
 		Exhibition exhibition = inMemoryExhibitionService.findOne(1L);
 
 		inMemoryExhibitionService.addPlayer(exhibition, 1L);
-		inMemoryPlayerService.findOne(1L).setTeam(Player.Team.Home);
+		inMemoryExhibitionService.addToTeam(inMemoryPlayerService.findOne(1L).getId(), Player.Team.Home);
 		Assert.assertNotNull(inMemoryPlayerService.findOne(1L).getTeam());
 		Assert.assertTrue(inMemoryPlayerService.findOne(1L).getTeam() == Player.Team.Home);
 
