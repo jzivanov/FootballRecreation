@@ -39,7 +39,7 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	public List<Player> listAllPlayersOfExhibition(Long exhibitionId) {
+	public List<Player> findAll(Long exhibitionId) {
 		return playerRepository.listAllPlayersOfExhibition(exhibitionId);
 	}
 
@@ -47,6 +47,12 @@ public class PlayerServiceImpl implements PlayerService {
 	public void addToTeam(Long playerId, Team team) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Player findOne(Long userId, Long exhibitionId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

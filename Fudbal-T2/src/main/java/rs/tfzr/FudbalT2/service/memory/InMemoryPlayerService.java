@@ -5,9 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
-import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.model.Player.Team;
 import rs.tfzr.FudbalT2.service.PlayerService;
 
@@ -17,7 +15,7 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 	
 	public InMemoryPlayerService()
 	{
-		Exhibition exhibition = new Exhibition();
+		/*Exhibition exhibition = new Exhibition();
 		exhibition.setId(1L);
 		User user = new User();
 		user.setId(1L);
@@ -58,11 +56,11 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 		save(player);
 		save(player2);
 		save(player3);
-		save(player4);
+		save(player4);*/
 	}
 	
 	@Override
-	public List<Player> listAllPlayersOfExhibition(Long exhibitionId) {
+	public List<Player> findAll(Long exhibitionId) {
 		List<Player> list = new ArrayList<>();
 		for (Player p : findAll()) {
 			if (p.getExhibition().getId() == exhibitionId)
@@ -77,6 +75,20 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 		Player player = findOne(playerId);
 		player.setTeam(team);
 		save(player);
+	}
+
+	@Override
+	public Player findOne(Long userId, Long exhibitionId) {
+		Player res = null;
+		for(Player player: findAll())
+		{
+			if(player.getUser().getId() == userId && player.getExhibition().getId() == exhibitionId)
+			{
+				res = player;
+				break;
+			}
+		}
+		return res;
 	}
 
 }
