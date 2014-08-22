@@ -26,5 +26,10 @@
 		<put-attribute name="title" value="page.scorers.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/scorers/scorers.jsp" />
 	</definition>
+	
+	<definition name="mvp" extends="standardLayout">
+		<put-attribute name="title" value="MVPs" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/mvp/mvp.jsp" />
+	</definition>
 
 </tiles-definitions>
