@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
@@ -23,6 +23,14 @@
 			</list>
 		</property>
 	</bean>
+	
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="rs.tfzr.FudbalT2.web.converter.StringToTeamConverter" />
+            </list>
+        </property>
+    </bean>
 
 	<mvc:view-controller path="/home" view-name="home" />
 
