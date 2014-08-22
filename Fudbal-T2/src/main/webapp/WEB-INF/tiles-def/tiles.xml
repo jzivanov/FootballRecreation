@@ -11,5 +11,20 @@
 		<put-attribute name="title" value="page.home.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/home.jsp" />
 	</definition>
+	
+	<definition name="players" extends="standardLayout">
+		<put-attribute name="title" value="page.players.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/players/players.jsp" />
+	</definition>
+	
+	<definition name="ranklist" extends="standardLayout">
+		<put-attribute name="title" value="page.ranklist.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/scorers/ranklist.jsp" />
+	</definition>
+	
+	<definition name="scorers" extends="standardLayout">
+		<put-attribute name="title" value="page.scorers.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/scorers/scorers.jsp" />
+	</definition>
 
 </tiles-definitions>

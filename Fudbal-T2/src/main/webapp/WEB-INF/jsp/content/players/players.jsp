@@ -1,24 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<c:forEach items="${players}" var="player">
-		<tr>
-			<spring:eval expression="dp.status == T(com.example.Status).VALID" var="isValid" />
-			<c:if test="${player.team = }"></c:if>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
+
+<c:set var="home" value="<%= rs.tfzr.FudbalT2.model.Player.Team.Home %>"></c:set>
+<c:set var="away" value="<%= rs.tfzr.FudbalT2.model.Player.Team.Away %>"></c:set>
+<c:set var="none" value="<%= rs.tfzr.FudbalT2.model.Player.Team.None %>"></c:set>
+<h1>Team home</h1>
+<c:forEach items="${players}" var="player">
+	<tr>
+		<c:if test="${player.team == home}">
+			<td><c:out value="${player.exhibition.exhibitionStart}"></c:out></td>
+			<td><c:out value="${player.user.firstName}"></c:out></td>
+			<td><c:out value="${player.user.lastName}"></c:out></td>
+			<td><c:out value="${player.team}"></c:out></td>
+			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/0" />">None</a></td>
+			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/2" />">Away</a></td>
+		</c:if>
+	</tr>
+</c:forEach>
+<h1>Team away</h1>
+<c:forEach items="${players}" var="player">
+	<tr>
+		<c:if test="${player.team == away}">
+			<td><c:out value="${player.exhibition.exhibitionStart}"></c:out></td>
+			<td><c:out value="${player.user.firstName}"></c:out></td>
+			<td><c:out value="${player.user.lastName}"></c:out></td>
+			<td><c:out value="${player.team}"></c:out></td>
+			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/0" />">None</a></td>
+			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/1" />">Home</a></td>
+		</c:if>
+	</tr>
+</c:forEach>
+<h1>Not assigned players</h1>
+<c:forEach items="${players}" var="player">
+	<tr>
+		<c:if test="${player.team == none}">
 			<td><c:out value="${player.exhibition.exhibitionStart}"></c:out></td>
 			<td><c:out value="${player.user.firstName}"></c:out></td>
 			<td><c:out value="${player.user.lastName}"></c:out></td>
 			<td><c:out value="${player.team}"></c:out></td>
 			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/1" />">Home</a></td>
 			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/2" />">Away</a></td>
-		</tr>
-	</c:forEach>
-</body>
-</html>
+		</c:if>
+	</tr>
+</c:forEach>
