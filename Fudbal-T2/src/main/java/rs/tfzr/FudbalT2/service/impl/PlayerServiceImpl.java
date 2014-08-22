@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.Player.Team;
 import rs.tfzr.FudbalT2.repository.PlayerRepository;
 import rs.tfzr.FudbalT2.service.PlayerService;
 
@@ -40,6 +41,12 @@ public class PlayerServiceImpl implements PlayerService {
 	@Override
 	public List<Player> listAllPlayersOfExhibition(Long exhibitionId) {
 		return playerRepository.listAllPlayersOfExhibition(exhibitionId);
+	}
+
+	@Override
+	public void addToTeam(Long playerId, Team team) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

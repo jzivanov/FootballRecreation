@@ -6,4 +6,5 @@ import rs.tfzr.FudbalT2.model.Player;
 
 public interface PlayerService extends CrudService<Player> {
 	List<Player> listAllPlayersOfExhibition(Long exhibitionId);
+	void addToTeam(Long playerId, Player.Team team);
 }
