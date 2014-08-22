@@ -20,27 +20,27 @@ public final class ExhibitionDTO {
 	@NotNull
 	private Date endDate;
 
-	private Long getId() {
+	public Long getId() {
 		return Id;
 	}
 
-	private void setId(Long Id) {
+	public void setId(Long Id) {
 		this.Id = Id;
 	}
 
-	private Date getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	private void setStartDate(Date startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	private Date getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	private void setEndDate(Date endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	
