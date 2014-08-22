@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import rs.tfzr.FudbalT2.repository.ExhibitionRepository;
 import rs.tfzr.FudbalT2.repository.PlayerRepository;
+import rs.tfzr.FudbalT2.repository.UserRepository;
 
 /**
  * @author Miroslav
@@ -23,6 +24,11 @@ public class ExhibitionController {
 
 	@Autowired
 	private PlayerRepository playerService;
+	
+	@Autowired
+	private UserRepository userService;
+	
+	
 	
 	
 }
