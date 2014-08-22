@@ -1,6 +1,7 @@
 package rs.tfzr.FudbalT2.service;
 
 import rs.tfzr.FudbalT2.model.MVP;
+import rs.tfzr.FudbalT2.model.Player;
 
 /**
  * 
@@ -9,9 +10,9 @@ import rs.tfzr.FudbalT2.model.MVP;
  */
 public interface MvpService extends CrudService<MVP> {
 	/**
-	 * 
-	 * @param ExhibitionId
-	 * @return MVP for passed Exhibition or null if there is no mvp
+	 * Find and return {@link rs.tfzr.FudbalT2.model.Player Player} with passed {@link rs.tfzr.FudbalT2.model.Exhibition ExhibitionID}
+	 * @param {@link rs.tfzr.FudbalT2.model.Exhibition ExhibitionID}
+	 * @return {@link rs.tfzr.FudbalT2.model.Player Player}, {@code null} if there is no entity
 	 */
-	MVP getMvpForExhibition(Long ExhibitionId);
+	Player getMvpForExhibition(Long ExhibitionId);
 }

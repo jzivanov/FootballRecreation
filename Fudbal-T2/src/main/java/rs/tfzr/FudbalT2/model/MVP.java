@@ -1,35 +1,70 @@
 package rs.tfzr.FudbalT2.model;
 
+/**
+ * MVP model class
+ * 
+ * @author jovan
+ */
 public class MVP extends AbstractBaseEntity {
+	
 	/**
 	 * serialVersionUID
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9116603249119354912L;
 
+	/**
+	 * Voted player
+	 */
 	private Player player;
+	
+	/**
+	 * Exhibition of voted player
+	 */
 	private Exhibition exhibition;
+	
+	/**
+	 * Player, who votes
+	 */
 	private Player playerVote;
 
+	/**
+	 * @return {@link #player}
+	 */
 	public Player getPlayer() {
 		return player;
 	}
 
+	/**
+	 * @param {@link #player}
+	 */
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
 
+	/**
+	 * @return {@link #exhibition}
+	 */
 	public Exhibition getExhibition() {
 		return exhibition;
 	}
 
+	/**
+	 * @param {@link #exhibition}
+	 */
 	public void setExhibition(Exhibition exhibition) {
 		this.exhibition = exhibition;
 	}
 
+	/**
+	 * @return {@link #playerVote}
+	 */
 	public Player getPlayerVote() {
 		return playerVote;
 	}
 
+	/**
+	 * @param {@link #playerVote}
+	 */
 	public void setPlayerVote(Player playerVote) {
 		this.playerVote = playerVote;
 	}
@@ -37,16 +72,19 @@ public class MVP extends AbstractBaseEntity {
 	public MVP() {
 		player = new Player();
 		exhibition = new Exhibition();
+		playerVote = new Player();
 	}
 
-	public MVP(Player player) {
-		exhibition = new Exhibition();
-		this.player = player;
-	}
-
-	public MVP(Player player, Exhibition exhibition) {
+	/**
+	 * 
+	 * @param {@link #player}
+	 * @param {@link #exhibition}
+	 * @param {@link #playerVote}
+	 */
+	public MVP(Player player, Exhibition exhibition, Player playerVote) {
 		this.player = player;
 		this.exhibition = exhibition;
+		this.playerVote = playerVote;
 	}
 
 	@Override

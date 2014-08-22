@@ -2,7 +2,7 @@ package rs.tfzr.FudbalT2.service.memory;
 
 import java.util.List;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,39 +24,52 @@ public class InMemoryMvpServiceTest {
 	public void setUp() {
 		service = new InMemoryMvpService();
 
-		Exhibition exhibition = new Exhibition();
-		exhibition.setId(1L);
 		User user = new User();
 		user.setId(1L);
 		user.setEmail("zjovan.ost@gmail.com");
 		user.setFirstName("jovan");
 		user.setLastName("zivanov");
-		Player player = new Player();
-		player.setId(1L);
-		player.setUser(user);
-		player.setExhibition(exhibition);
-
-		// 2
-		Exhibition exhibition2 = new Exhibition();
-		exhibition2.setId(2L);
+		
 		User user2 = new User();
 		user2.setId(2L);
-		user2.setEmail("zjovan2.ost@gmail.com");
-		user2.setFirstName("jovan2");
-		user2.setLastName("zivanov2");
+		user2.setEmail("pera@kojot.supergenije");
+		user2.setFirstName("pera kojot");
+		user2.setLastName("super genije");
+		
+		User user3 = new User();
+		user3.setId(3L);
+		user3.setEmail("bip@bip.bip");
+		user3.setFirstName("bip");
+		user3.setLastName("bip");
+		
+		Exhibition exhibition = new Exhibition();
+		exhibition.setId(1L);
+		
+		Exhibition exhibition2 = new Exhibition();
+		exhibition2.setId(2L);
+		
+		Player player1 = new Player();
+		player1.setId(1L);
+		player1.setUser(user);
+		player1.setExhibition(exhibition);
+
 		Player player2 = new Player();
 		player2.setId(2L);
 		player2.setUser(user2);
-		player2.setExhibition(exhibition2);
-
-		MVP mvp = new MVP(player, exhibition);
-		MVP mvp2 = new MVP(player2, exhibition2);
-
-		service.save(mvp2);
+		player2.setExhibition(exhibition);
+		
+		Player player3 = new Player();
+		player3.setId(3L);
+		player3.setUser(user3);
+		player3.setExhibition(exhibition);
+		
+		MVP mvp = new MVP(player1, exhibition, player2);
+		MVP mvp2 = new MVP(player1, exhibition, player3);
+		
 		service.save(mvp);
+		service.save(mvp2);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testFindAllMVPs() {
 		List<MVP> list = service.findAll();
@@ -64,11 +77,11 @@ public class InMemoryMvpServiceTest {
 		Assert.assertEquals(2, list.size());
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testMvpForExhibition() {
-		MVP mvp = service.getMvpForExhibition(2L);
-		Assert.assertNotNull(mvp);
+		Player player = service.getMvpForExhibition(1L);
+		Assert.assertNotNull(player);
+		Assert.assertTrue(player.getId() == 1L);
 		Assert.assertNull(service.getMvpForExhibition(33L));
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import rs.tfzr.FudbalT2.model.MVP;
+import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.repository.MvpRepository;
 import rs.tfzr.FudbalT2.service.MvpService;
 
@@ -38,7 +39,7 @@ public class MvpServiceImpl implements MvpService {
 	}
 
 	@Override
-	public MVP getMvpForExhibition(Long ExhibitionId) {
+	public Player getMvpForExhibition(Long ExhibitionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
