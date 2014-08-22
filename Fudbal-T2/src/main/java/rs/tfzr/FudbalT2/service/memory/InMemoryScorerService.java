@@ -12,10 +12,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import rs.tfzr.FudbalT2.model.Exhibition;
-import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.model.Scorers;
-import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ScorerService;
 
 @Service
@@ -24,7 +21,7 @@ public class InMemoryScorerService extends AbstractInMemoryService<Scorers>
 	
 	public InMemoryScorerService()
 	{
-		Exhibition exhibition = new Exhibition();
+		/*Exhibition exhibition = new Exhibition();
 		exhibition.setId(1L);
 		User user = new User();
 		user.setId(1L);
@@ -84,7 +81,7 @@ public class InMemoryScorerService extends AbstractInMemoryService<Scorers>
 		this.save(scorer4);
 		this.save(scorer3);
 		this.save(scorer2);
-		this.save(scorer);
+		this.save(scorer);*/
 	}
 	
 	@Override
