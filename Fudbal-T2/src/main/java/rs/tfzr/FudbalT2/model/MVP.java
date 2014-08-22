@@ -8,6 +8,7 @@ public class MVP extends AbstractBaseEntity {
 
 	private Player player;
 	private Exhibition exhibition;
+	private Player playerVote;
 
 	public Player getPlayer() {
 		return player;
@@ -23,6 +24,14 @@ public class MVP extends AbstractBaseEntity {
 
 	public void setExhibition(Exhibition exhibition) {
 		this.exhibition = exhibition;
+	}
+
+	public Player getPlayerVote() {
+		return playerVote;
+	}
+
+	public void setPlayerVote(Player playerVote) {
+		this.playerVote = playerVote;
 	}
 
 	public MVP() {
