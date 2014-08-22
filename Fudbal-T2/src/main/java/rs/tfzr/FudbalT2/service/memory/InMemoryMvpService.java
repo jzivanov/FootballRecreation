@@ -1,8 +1,11 @@
 package rs.tfzr.FudbalT2.service.memory;
 
+import org.springframework.stereotype.Service;
+
 import rs.tfzr.FudbalT2.model.MVP;
 import rs.tfzr.FudbalT2.service.MvpService;
 
+@Service
 public class InMemoryMvpService extends AbstractInMemoryService<MVP> implements
 		MvpService {
 	@Override
