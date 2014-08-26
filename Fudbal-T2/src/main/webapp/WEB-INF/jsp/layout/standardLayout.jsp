@@ -9,6 +9,9 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><fmt:message key="${title}" /></title>
+		<link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" />
+		<script src="<c:url value="/js/lib/jquery/jquery-1.11.1.min.js"/>"></script>
+		<script src="<c:url value="/js/lib/bootstrap/bootstrap.min.js"/>"></script>
 	</head>
 	<body>
 			<ul>
