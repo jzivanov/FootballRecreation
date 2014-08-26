@@ -3,6 +3,8 @@
  */
 package rs.tfzr.FudbalT2.service.memory;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Service;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
@@ -24,6 +26,46 @@ public class InMemoryExhibitionService extends
 	private PlayerService playerService;
 
 	private UserService userService;
+	
+	public InMemoryExhibitionService() {
+				
+		Exhibition exhibition = new Exhibition();
+		exhibition.setId(1L);
+		
+		Date start = new Date();
+		Date end = new Date();
+		end.setTime(start.getTime() + 60*60+1000);
+		
+		exhibition.setExhibitionStart(start);
+		exhibition.setExhibitionEnd(end);
+		exhibition.setEnded(false);
+		
+		Exhibition exhibition2 = new Exhibition();
+		exhibition2.setId(2L);
+		
+		Date start2 = new Date();
+		Date end2 = new Date();
+		end2.setTime(start2.getTime() + 60*60+1000);
+		
+		exhibition2.setExhibitionStart(start2);
+		exhibition2.setExhibitionEnd(end2);
+		exhibition2.setEnded(false);
+		
+		Exhibition exhibition3 = new Exhibition();
+		exhibition3.setId(3L);
+		
+		Date start3 = new Date();
+		Date end3 = new Date();
+		end3.setTime(start3.getTime() + 60*60+1000);
+		
+		exhibition3.setExhibitionStart(start3);
+		exhibition3.setExhibitionEnd(end3);
+		exhibition3.setEnded(false);
+		
+		this.save(exhibition);
+		this.save(exhibition2);
+		this.save(exhibition3);
+	}
 
 	/*
 	 * (non-Javadoc)
