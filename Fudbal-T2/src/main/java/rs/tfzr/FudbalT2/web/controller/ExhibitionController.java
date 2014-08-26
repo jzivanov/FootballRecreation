@@ -158,8 +158,8 @@ public class ExhibitionController {
 	// @param model
 	// @returns the name of the view for adding/removing a player to/from an
 	// exhibition
-	@RequestMapping(params = "removePlayer", method = RequestMethod.POST)
-	public String removePlayer(@RequestParam Long exhibitionId, Long playerId,
+	@RequestMapping(value = "/{iexhibitionID}/player/{playerID}", method = RequestMethod.GET)
+	public String removePlayer(@PathVariable Long exhibitionId, Long playerId,
 			Model model) {
 		Player player = playerService.findOne(playerId);
 		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
