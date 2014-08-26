@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 public final class ExhibitionDTO {
 
-	private Long Id;
+	private Long id;
 
 	@NotNull
 	private Date startDate;
@@ -31,11 +31,11 @@ public final class ExhibitionDTO {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long Id) {
-		this.Id = Id;
+		this.id = Id;
 	}
 
 	public Date getStartDate() {
