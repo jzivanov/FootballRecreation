@@ -18,6 +18,18 @@
 			value="/WEB-INF/jsp/content/players/players.jsp" />
 	</definition>
 
+	<definition name="login" extends="standardLayout">
+		<put-attribute name="title" value="page.login.title" />
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/content/user/login.jsp" />
+	</definition>
+
+	<definition name="register" extends="standardLayout">
+		<put-attribute name="title" value="page.register.title" />
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/content/user/register.jsp" />
+	</definition>
+
 	<definition name="ranklist" extends="standardLayout">
 		<put-attribute name="title" value="page.ranklist.title" />
 		<put-attribute name="content"
@@ -37,7 +49,8 @@
 
 	<definition name="exhibitions" extends="standardLayout">
 		<put-attribute name="title" value="page.exhibitions.title" />
-		<put-attribute name="content" value="/WEB-INF/jsp/content/exhibition/exhibition.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/content/exhibition/exhibition.jsp" />
 	</definition>
 
 </tiles-definitions>
