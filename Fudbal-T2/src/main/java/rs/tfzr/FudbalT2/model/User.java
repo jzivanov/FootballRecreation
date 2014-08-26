@@ -27,7 +27,7 @@ public class User extends AbstractBaseEntity {
 	@NotEmpty
 	@Email
 	private String email;
-	private int phoneNumber;
+	private String phoneNumber;
 
 	public String getFirstName() {
 		return firstName;
