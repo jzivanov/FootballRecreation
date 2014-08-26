@@ -1,6 +1,9 @@
 package rs.tfzr.FudbalT2.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,17 +51,37 @@ public class Exhibition extends AbstractBaseEntity {
 	public void setScorers(List<Scorers> scorers) {
 		this.scorers = scorers;
 	}
-
+	
+	//sets the start date and time
+	//calculates end time by adding 90minutes to the start time
+	//formats both times
 	public void setExhibitionStart(Date exhibitionStart) {
-		this.exhibitionStart = exhibitionStart;
+		String date = exhibitionStart.toString();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+		date = dateFormat.format(exhibitionStart);
+		try {
+			this.exhibitionStart = dateFormat.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(exhibitionStart);
+		calendar.add(Calendar.HOUR, 1);
+		calendar.add(Calendar.MINUTE, 30);
+		String dateEnd = dateFormat.format(calendar.getTime());
+		try {
+			this.exhibitionEnd = dateFormat.parse(dateEnd);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Date getExhibitionStart() {
 		return exhibitionStart;
-	}
-
-	public void setExhibitionEnd(Date exhibitionEnd) {
-		this.exhibitionEnd = exhibitionEnd;
 	}
 
 	public Date getExhibitionEnd() {
