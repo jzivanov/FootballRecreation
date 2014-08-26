@@ -15,7 +15,8 @@
 				<li><a class="dashBoard" href="<c:url value="/home"/>">Home</a></li>
 				<li><a class="login" href="<c:url value="/login"/>"> Login</a></li>
 				<li><a class="register" href="<c:url value="/register"/>">Register</a></li>
-
+				<li><a href="<c:url value="/home?lang=sr" />"><fmt:message key="common.header.language.sr" /></a></li>
+				<li><a href="<c:url value="/home?lang=en" />"><fmt:message key="common.header.language.en" /></a></li>
 			</ul>
 			
 		<section id="mainContent">
