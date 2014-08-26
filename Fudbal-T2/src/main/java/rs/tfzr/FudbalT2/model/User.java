@@ -27,6 +27,7 @@ public class User extends AbstractBaseEntity {
 	@NotEmpty
 	@Email
 	private String email;
+	private int phoneNumber;
 
 	public String getFirstName() {
 		return firstName;
@@ -82,6 +83,14 @@ public class User extends AbstractBaseEntity {
 			return false;
 
 		return true;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }

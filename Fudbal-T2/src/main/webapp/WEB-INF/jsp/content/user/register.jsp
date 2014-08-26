@@ -31,7 +31,7 @@
 		
 		<tr>
 			<td>Repeat Password :</td>
-			<td><form:password path="passwordRepeat" /></td>
+			<td><form:password path="confirmPassword" /></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Register"></td>

@@ -11,7 +11,13 @@
 		<title><fmt:message key="${title}" /></title>
 	</head>
 	<body>
-	
+			<ul>
+				<li><a class="dashBoard" href="<c:url value="/home"/>">Home</a></li>
+				<li><a class="login" href="<c:url value="/login"/>"> Login</a></li>
+				<li><a class="register" href="<c:url value="/register"/>">Register</a></li>
+
+			</ul>
+			
 		<section id="mainContent">
 			<tiles:insertAttribute name="content" />
 		</section>
