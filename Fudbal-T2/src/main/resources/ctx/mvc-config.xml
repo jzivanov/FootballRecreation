@@ -26,6 +26,15 @@
             </list>
         </property>
     </bean>
-
+    
     <mvc:view-controller path="/home" view-name="home" />
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basename="cfg.messages.messages" />
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
+    </mvc:interceptors>
 </beans>
