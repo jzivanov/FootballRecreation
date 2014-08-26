@@ -80,7 +80,7 @@ public class InMemoryExhibitionService extends
 	public void addToTeam(Long playerId, Player.Team team) {
 		Player player = playerService.findOne(playerId);
 		player.setTeam(team);
-
+		playerService.save(player);
 	}
 
 }

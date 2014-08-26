@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
+import rs.tfzr.FudbalT2.web.validator.MvpExhibitionValidator;
 
 @Controller
 @RequestMapping("/mvp")
@@ -54,9 +57,23 @@ public class MvpController {
 	
 	@RequestMapping(value = "/exhibition/{id}/vote", method = RequestMethod.GET)
 	public String vote(@PathVariable Long id, Model model)
-	{
-		model.addAttribute("players", playerService.findAll(id));
-		return "";
+	{		
+		Exhibition ex = exhibitionService.findOne(id);
+		DataBinder binder = new DataBinder(ex);
+		binder.setValidator(new MvpExhibitionValidator());
+		binder.validate();
+		BindingResult results = binder.getBindingResult();
+		if(!results.hasErrors())
+		{
+			//Iz liste igraca koji su prisustvovali mecu, izbaci korisnika
+			//Jer ne moze da glasa sam za sebe.
+			model.addAttribute("players", playerService.findAll(id));
+			return "";
+		}
+		else
+		{
+			return "";
+		}
 	}
 	
 	@RequestMapping(value = "/exhibition/{id}/vote/player/{idp}/user/{idu}", method = RequestMethod.GET)
