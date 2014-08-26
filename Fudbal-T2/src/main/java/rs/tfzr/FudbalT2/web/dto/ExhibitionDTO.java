@@ -19,6 +19,16 @@ public final class ExhibitionDTO {
 	private Date startDate;
 	@NotNull
 	private Date endDate;
+	
+	private Long userId;
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
 	public Long getId() {
 		return Id;
