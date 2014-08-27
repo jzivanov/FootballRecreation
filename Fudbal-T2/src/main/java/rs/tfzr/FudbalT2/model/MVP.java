@@ -1,10 +1,15 @@
 package rs.tfzr.FudbalT2.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * MVP model class
  * 
  * @author jovan
  */
+@Entity
+@Table(name = "mvp")
 public class MVP extends AbstractBaseEntity {
 	
 	/**

@@ -1,10 +1,15 @@
 package rs.tfzr.FudbalT2.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * 
  * @author jovan
  *
  */
+@Entity
+@Table(name = "scorer")
 public class Scorers extends AbstractBaseEntity {
 
 	/**

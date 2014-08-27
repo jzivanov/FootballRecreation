@@ -7,6 +7,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "exhibition")
 public class Exhibition extends AbstractBaseEntity {
 
 	/**

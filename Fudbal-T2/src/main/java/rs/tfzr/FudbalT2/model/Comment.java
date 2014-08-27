@@ -1,5 +1,11 @@
 package rs.tfzr.FudbalT2.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "comment")
 public class Comment extends AbstractBaseEntity {
 
 	/**
