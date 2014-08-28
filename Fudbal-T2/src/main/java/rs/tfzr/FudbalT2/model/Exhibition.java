@@ -7,7 +7,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +30,13 @@ public class Exhibition extends AbstractBaseEntity {
 	private Date exhibitionEnd;
 
 	private boolean ended;
-
+	
+    @ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "scorer", joinColumns = @JoinColumn(name = "exhibition_id"))
 	private List<Scorers> scorers;
-
+    
+    @ElementCollection(fetch = FetchType.EAGER)
+   	@CollectionTable(name = "player", joinColumns = @JoinColumn(name = "exhibition_id"))
 	private List<Player> players;
 
 	public List<Player> getPlayers() {

@@ -1,6 +1,8 @@
 package rs.tfzr.FudbalT2.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,11 +22,15 @@ public class MVP extends AbstractBaseEntity {
 	/**
 	 * Voted player
 	 */
+	@ManyToOne
+    @JoinColumn(name = "player_id", nullable = false)
 	private Player player;
 	
 	/**
 	 * Exhibition of voted player
 	 */
+	@ManyToOne
+    @JoinColumn(name = "exhibition_id", nullable = false)
 	private Exhibition exhibition;
 	
 	/**

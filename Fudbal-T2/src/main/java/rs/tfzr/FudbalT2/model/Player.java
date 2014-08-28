@@ -1,6 +1,8 @@
 package rs.tfzr.FudbalT2.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,11 +35,15 @@ public class Player extends AbstractBaseEntity {
 	/**
 	 * Represents player
 	 */
+	@ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
 	/**
 	 * Player's exhibition
 	 */
+	@ManyToOne
+    @JoinColumn(name = "exhibition_id", nullable = false)
 	private Exhibition exhibition;
 
 	public Player() {
