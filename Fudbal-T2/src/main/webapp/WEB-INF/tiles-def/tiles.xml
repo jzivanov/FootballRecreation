@@ -57,5 +57,10 @@
 		<put-attribute name="title" value="page.comments.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/comments/comments.jsp" />
 	</definition>
+	
+	<definition name="user-login" extends="standardLayout">
+		<put-attribute name="title" value="page.login.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/login.jsp" />
+	</definition>
 
 </tiles-definitions>
