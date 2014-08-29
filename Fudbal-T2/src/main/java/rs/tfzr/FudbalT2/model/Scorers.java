@@ -1,10 +1,17 @@
 package rs.tfzr.FudbalT2.model;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * 
  * @author jovan
  *
  */
+@Entity
+@Table(name = "scorer")
 public class Scorers extends AbstractBaseEntity {
 
 	/**
@@ -15,11 +22,15 @@ public class Scorers extends AbstractBaseEntity {
 	/**
 	 * Player who scored
 	 */
+	@ManyToOne
+    @JoinColumn(name = "player_id", nullable = false)
 	private Player player;
 	
 	/**
 	 * Scorer at exhibition
 	 */
+	@ManyToOne
+    @JoinColumn(name = "exhibition_id", nullable = false)
 	private Exhibition exhibition;
 
 	/**

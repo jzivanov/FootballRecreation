@@ -1,5 +1,13 @@
 package rs.tfzr.FudbalT2.model;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "comment")
 public class Comment extends AbstractBaseEntity {
 
 	/**
@@ -7,7 +15,11 @@ public class Comment extends AbstractBaseEntity {
 	 */
 	private static final long serialVersionUID = 2736385850859895358L;
 	
+	@ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
 	private User user;
+	@ManyToOne
+    @JoinColumn(name = "exhibition_id", nullable = false)
 	private Exhibition exhibition;
 	private Comment mainComment;
 	private String content;
