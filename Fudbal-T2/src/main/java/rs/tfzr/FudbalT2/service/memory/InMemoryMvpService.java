@@ -43,4 +43,20 @@ public class InMemoryMvpService extends AbstractInMemoryService<MVP> implements
 			return res.getPlayer();
 	}
 
+	@Override
+	public boolean playerVoted(Long playerId, Long exhibitionId) 
+	{
+		boolean retVal = false;
+		for(MVP mvp: findAll())
+		{
+			if(mvp.getPlayerVote().getId() == playerId && mvp.getExhibition().getId() == exhibitionId)
+			{
+				retVal = true;
+				break;
+			}
+		}
+		
+		return retVal;
+	}
+
 }

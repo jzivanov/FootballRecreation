@@ -5,11 +5,10 @@
 
 	<!-- Core configuration -->
 	<import resource="classpath:/ctx/bean-config.xml"/>
-	
-	<!-- Persistence -->
-	<import resource="classpath:/ctx/persistence-config.xml"/>
 
 	<!-- Spring MVC -->
 	<import resource="classpath:/ctx/mvc-config.xml"/>
-
+	
+	<!-- Spring security -->
+	<import resource="classpath:/ctx/spring-security.xml"/>
 </beans>

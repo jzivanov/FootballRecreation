@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.MVP;
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.UserDetail;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
+import rs.tfzr.FudbalT2.web.dto.MvpDTO;
 import rs.tfzr.FudbalT2.web.validator.MvpExhibitionValidator;
 
 @Controller
@@ -59,21 +63,31 @@ public class MvpController {
 	public String vote(@PathVariable Long id, Model model)
 	{		
 		Exhibition ex = exhibitionService.findOne(id);
-		DataBinder binder = new DataBinder(ex);
+		UserDetail user = (UserDetail)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		MvpDTO mvpdto = new MvpDTO();
+		mvpdto.setExhibition(ex);
+		mvpdto.setUser(user);
+		
+		DataBinder binder = new DataBinder(mvpdto);
 		binder.setValidator(new MvpExhibitionValidator());
 		binder.validate();
 		BindingResult results = binder.getBindingResult();
+		
 		if(!results.hasErrors())
 		{
 			//Iz liste igraca koji su prisustvovali mecu, izbaci korisnika
 			//Jer ne moze da glasa sam za sebe.
-			model.addAttribute("players", playerService.findAll(id));
-			return "";
+			List<Player> list = playerService.findAll(id);
+			for(Player player: list)
+			{
+				if(player.getUser().getId() == user.getId())
+					list.remove(player);
+			}
+		    mvpdto.setPlayerList(list);
+			model.addAttribute("mvp", mvpdto);
 		}
-		else
-		{
-			return "";
-		}
+		return "mvpVote";
 	}
 	
 	@RequestMapping(value = "/exhibition/{id}/vote/player/{idp}/user/{idu}", method = RequestMethod.GET)

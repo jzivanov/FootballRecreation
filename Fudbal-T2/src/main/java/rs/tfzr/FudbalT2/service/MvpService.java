@@ -15,4 +15,12 @@ public interface MvpService extends CrudService<MVP> {
 	 * @return {@link rs.tfzr.FudbalT2.model.Player Player}, {@code null} if there is no entity
 	 */
 	Player getMvpForExhibition(Long ExhibitionId);
+	
+	/**
+	 * Check if {@link rs.tfzr.FudbalT2.model.Player Player} was already voted for mvp on {@link rs.tfzr.FudbalT2.model.Exhibition Exhibition}
+	 * @param {@link rs.tfzr.FudbalT2.model.Player PlayerID}
+	 * @param {@link rs.tfzr.FudbalT2.model.Exhibition ExhibitionID}
+	 * @return {@code true} if player already voted, otherwise {@code false}
+	 */
+	boolean playerVoted(Long playerId, Long exhibitionId);
 }

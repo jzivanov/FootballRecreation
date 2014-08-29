@@ -44,4 +44,10 @@ public class MvpServiceImpl implements MvpService {
 		return null;
 	}
 
+	@Override
+	public boolean playerVoted(Long userId, Long exhibitionId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
