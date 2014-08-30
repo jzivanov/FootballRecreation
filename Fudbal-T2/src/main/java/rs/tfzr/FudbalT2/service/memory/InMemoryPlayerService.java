@@ -1,6 +1,7 @@
 package rs.tfzr.FudbalT2.service.memory;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,61 +18,93 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 	
 	public InMemoryPlayerService()
 	{
-/*
 		User user = new User();
-		user.setId(1L);
 		user.setEmail("zjovan.ost@gmail.com");
-		user.setFirstName("jovan");
-		user.setLastName("zivanov");
+		user.setPassword("123");
+		user.setUsername("zjovan.ost@gmail.com");
+		user.setId(1L);
 		
 		User user2 = new User();
-		user2.setId(2L);
-		user2.setEmail("pera@kojot.supergenije");
-		user2.setFirstName("pera kojot");
-		user2.setLastName("super genije");
+		user2.setEmail("pera@kojot");
+		user2.setPassword("123");
+		user2.setUsername("pera@kojot");
+		user.setId(2L);
 		
 		User user3 = new User();
-		user3.setId(3L);
-		user3.setEmail("bip@bip.bip");
-		user3.setFirstName("bip");
-		user3.setLastName("bip");
+		user3.setEmail("bip@bip");
+		user3.setPassword("123");
+		user3.setUsername("bip@bip");
+		user.setId(3L);
 		
 		Exhibition exhibition = new Exhibition();
+		exhibition.setExhibitionStart(new Date(2014, 8, 29, 20, 0));
+		exhibition.setEnded(true);
 		exhibition.setId(1L);
 		
 		Exhibition exhibition2 = new Exhibition();
-		exhibition2.setId(2L);
+		exhibition2.setExhibitionStart(new Date(2014, 8, 29, 21, 30));
+		exhibition2.setEnded(false);
+		exhibition.setId(2L);
+		
+		Exhibition exhibition3 = new Exhibition();
+		exhibition3.setExhibitionStart(new Date(2014, 8, 30, 20, 0));
+		exhibition3.setEnded(false);
+		exhibition.setId(3L);
 		
 		Player player1 = new Player();
-		player1.setId(1L);
-		player1.setUser(user);
 		player1.setExhibition(exhibition);
-
+		player1.setTeam(Player.Team.Away);
+		player1.setUser(user);
+		
 		Player player2 = new Player();
-		player2.setId(2L);
-		player2.setUser(user2);
 		player2.setExhibition(exhibition);
+		player2.setTeam(Player.Team.Away);
+		player2.setUser(user2);
 		
 		Player player3 = new Player();
-		player3.setId(3L);
-		player3.setUser(user3);
 		player3.setExhibition(exhibition);
-
+		player3.setTeam(Player.Team.Home);
+		player3.setUser(user3);
+		
 		Player player4 = new Player();
-		player4.setId(4L);
-		player4.setUser(user2);
 		player4.setExhibition(exhibition2);
+		player4.setTeam(Player.Team.Away);
+		player4.setUser(user);
 		
 		Player player5 = new Player();
-		player5.setId(5L);
-		player5.setUser(user3);
 		player5.setExhibition(exhibition2);
+		player5.setTeam(Player.Team.Away);
+		player5.setUser(user2);
 		
-		this.save(player1);
-		this.save(player2);
-		this.save(player3);
-		this.save(player4);
-		this.save(player5);*/
+		Player player6 = new Player();
+		player6.setExhibition(exhibition2);
+		player6.setTeam(Player.Team.Home);
+		player6.setUser(user3);
+		
+		Player player7 = new Player();
+		player7.setExhibition(exhibition3);
+		player7.setTeam(Player.Team.Away);
+		player7.setUser(user);
+		
+		Player player8 = new Player();
+		player8.setExhibition(exhibition3);
+		player8.setTeam(Player.Team.Away);
+		player8.setUser(user2);
+		
+		Player player9 = new Player();
+		player9.setExhibition(exhibition3);
+		player9.setTeam(Player.Team.Home);
+		player9.setUser(user3);
+		
+		save(player1);
+		save(player2);
+		save(player3);
+		save(player4);
+		save(player5);
+		save(player6);
+		save(player7);
+		save(player8);
+		save(player9);
 	}
 	
 	@Override

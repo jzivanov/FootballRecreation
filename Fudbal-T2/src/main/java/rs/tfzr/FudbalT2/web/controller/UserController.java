@@ -8,15 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.UserService;
 
 @Controller
-public class UserController {
+@RequestMapping(value = "/user")
+public class UserController 
+{
 
 	@Autowired
 	private UserService userService;
@@ -45,21 +47,18 @@ public class UserController {
 		return viewUser;
 
 	}
-
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String viewLogin(Map<String, Object> model) {
-		User userFormLogin = new User();
-		model.put("userFormLogin", userFormLogin);
-
-		return "login";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String processLogin(@ModelAttribute("userFormLogin") User user,
-			Map<String, Object> model) {
-		// Login logic here
-		System.out.println("LoginSuccess");
-
-		return "loginSuccess";
+	public String login(
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout,
+			Model model)
+	{
+		if(error != null)
+			model.addAttribute("error", "page.login.error");
+		if(logout != null)
+			model.addAttribute("logout_msg", "page.logout.msg");
+		
+		return "user-login";
 	}
 }

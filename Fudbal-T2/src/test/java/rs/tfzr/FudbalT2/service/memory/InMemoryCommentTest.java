@@ -32,7 +32,6 @@ public class InMemoryCommentTest
 		user1.setEmail("zjovan.ost@gmail.com");
 		user1.setFirstName("jovan");
 		user1.setLastName("zivanov");
-		user1.setConfirmPassword("dfd");
 		user1.setEmail("email");
 		user1.setPassword("df");
 		
@@ -41,7 +40,6 @@ public class InMemoryCommentTest
 		user2.setEmail("pera@kojot.supergenije");
 		user2.setFirstName("pera kojot");
 		user2.setLastName("super genije");
-		user2.setConfirmPassword("dfd");
 		user2.setEmail("email");
 		user2.setPassword("df");
 		
@@ -50,7 +48,6 @@ public class InMemoryCommentTest
 		user3.setEmail("bip@bip.bip");
 		user3.setFirstName("bip");
 		user3.setLastName("bip");
-		user3.setConfirmPassword("dfd");
 		user3.setEmail("email");
 		user3.setPassword("df");
 		

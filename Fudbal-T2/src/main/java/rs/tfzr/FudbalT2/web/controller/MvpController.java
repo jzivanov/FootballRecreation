@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.MVP;
 import rs.tfzr.FudbalT2.model.Player;
-import rs.tfzr.FudbalT2.model.UserDetail;
+import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
@@ -67,7 +67,8 @@ public class MvpController {
 	public String vote(@PathVariable Long id, Model model)
 	{		
 		Exhibition ex = exhibitionService.findOne(id);
-		UserDetail user = (UserDetail)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
 		System.out.println("From MvpController.vote(); user email: " + user.getEmail());
 		System.out.println("exhibition end date: " + ex.getExhibitionEnd().toString());
 		MvpDTO mvpdto = new MvpDTO();

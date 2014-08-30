@@ -3,6 +3,8 @@ package rs.tfzr.FudbalT2.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.repository.UserRepository;
@@ -34,6 +36,13 @@ public class UserServiceImpl implements UserService {
 	public void remove(Long id) throws IllegalArgumentException {
 		userRepository.delete(id);
 
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String arg0)
+			throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -8,14 +8,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import rs.tfzr.FudbalT2.model.UserDetail;
-import rs.tfzr.FudbalT2.service.UserDetailService;
+import rs.tfzr.FudbalT2.model.User;
+import rs.tfzr.FudbalT2.service.UserService;
 
 @Component
 public class UserDetailAuthenticationProvider implements AuthenticationProvider
 {
 	@Autowired
-	private UserDetailService userDetailService;
+	private UserService userDetailService;
 	
 	@Override
 	public Authentication authenticate(Authentication auth)
@@ -23,7 +23,7 @@ public class UserDetailAuthenticationProvider implements AuthenticationProvider
 		String username = auth.getName();
 		String password = (String)auth.getCredentials();
 		
-		UserDetail userDetails = (UserDetail) userDetailService.loadUserByUsername(username);
+		User userDetails = (User) userDetailService.loadUserByUsername(username);
 		
 		if(userDetails == null)
 			throw new BadCredentialsException("Username not found.");

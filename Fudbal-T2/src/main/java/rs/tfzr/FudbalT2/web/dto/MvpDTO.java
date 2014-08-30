@@ -6,14 +6,14 @@ import javax.validation.constraints.NotNull;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
-import rs.tfzr.FudbalT2.model.UserDetail;
+import rs.tfzr.FudbalT2.model.User;
 
 public class MvpDTO 
 {
 	@NotNull
 	private Exhibition exhibition;
 	@NotNull
-	private UserDetail user;
+	private User user;
 	
 	private List<Player> players;
 	
@@ -23,10 +23,10 @@ public class MvpDTO
 	public void setExhibition(Exhibition exhibition) {
 		this.exhibition = exhibition;
 	}
-	public UserDetail getUser() {
+	public User getUser() {
 		return user;
 	}
-	public void setUser(UserDetail user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	public List<Player> getPlayerList() {
