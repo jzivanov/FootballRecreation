@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.PlayerService;
 import rs.tfzr.FudbalT2.service.UserService;
 import rs.tfzr.FudbalT2.web.dto.ExhibitionDTO;
+import rs.tfzr.FudbalT2.web.validator.ExhibitionValidator;
 
 /**
  * @author Miroslav
@@ -43,6 +45,9 @@ public class ExhibitionController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ExhibitionValidator exhibitionValidator;
 
 	// Returns the list of all exhibitions
 	@RequestMapping(method = RequestMethod.GET)
@@ -141,13 +146,19 @@ public class ExhibitionController {
 	// @returns the name of the view for adding/removing a player to/from an
 	// exhibition
 	@RequestMapping(value = "/{iexhibitionID}/user/{userID}", method = RequestMethod.GET)
-	public String addPlayer(@PathVariable Long exhibitionId, Long userId,
-			Model model) {
+	public String addPlayer(@PathVariable("iexhibitionID") Long exhibitionId,
+			Long userId, Model model) {
 
 		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
 
-		exhibitionService.addPlayer(exhibition, userId);
-		
+		DataBinder binder = new DataBinder(exhibition);
+		binder.setValidator(exhibitionValidator);
+		binder.validate();
+		BindingResult results = binder.getBindingResult();
+		if (!results.hasErrors()) {
+			exhibitionService.addPlayer(exhibition, userId);
+		}
+
 		model.addAttribute("exhibition", exhibitionId);
 		return "redirect:exhibitions";
 	}
