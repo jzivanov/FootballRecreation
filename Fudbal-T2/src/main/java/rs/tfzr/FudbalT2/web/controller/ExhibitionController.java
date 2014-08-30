@@ -10,6 +10,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +18,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.PlayerService;
 import rs.tfzr.FudbalT2.service.UserService;
@@ -50,11 +51,14 @@ public class ExhibitionController {
 		List<ExhibitionDTO> retVal = new ArrayList<>();
 		List<Exhibition> exhibitions = exhibitionService.findAll();
 		ExhibitionDTO dto = new ExhibitionDTO();
+		User user = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
 		for (Exhibition exhibition : exhibitions) {
 			dto = new ExhibitionDTO();
 			dto.setId(exhibition.getId());
 			dto.setStartDate(exhibition.getExhibitionStart());
 			dto.setEndDate(exhibition.getExhibitionEnd());
+			dto.setUserId(user.getId());
 			retVal.add(dto);
 		}
 		return retVal;
@@ -136,24 +140,21 @@ public class ExhibitionController {
 	// @param model
 	// @returns the name of the view for adding/removing a player to/from an
 	// exhibition
-	@RequestMapping(value = "/{iexhibitionID}/user/{userId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{iexhibitionID}/user/{userID}", method = RequestMethod.GET)
 	public String addPlayer(@PathVariable Long exhibitionId, Long userId,
 			Model model) {
-		Player player = playerService.findOne(userId);
+
 		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
-		if (player != null) {
-			exhibitionService.addPlayer(exhibition, userId);
-			exhibitionService.save(exhibition);
-		} else {
-			model.addAttribute("addPlayerRequired",
-					"exhibition.addPlayer.required");
-		}
+
+		exhibitionService.addPlayer(exhibition, userId);
+		
 		model.addAttribute("exhibition", exhibitionId);
-		return "addRemovePlayers";
+		return "redirect:exhibitions";
 	}
 
 	// Removes a player from an exhibition
-	// @param exhibitionId - the id of the exhibition from which to remove the player
+	// @param exhibitionId - the id of the exhibition from which to remove the
+	// player
 	// @param playerId - id of the player to remove from the exhibition
 	// @param model
 	// @returns the name of the view for adding/removing a player to/from an
