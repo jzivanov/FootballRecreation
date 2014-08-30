@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,9 @@ public class MvpController {
 	@Autowired
 	private PlayerService playerService;
 	
+	@Autowired
+	private MvpExhibitionValidator mvpValidator;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	@ModelAttribute("mvps")
 	public List<Player> get()
@@ -64,13 +68,14 @@ public class MvpController {
 	{		
 		Exhibition ex = exhibitionService.findOne(id);
 		UserDetail user = (UserDetail)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
+		System.out.println("From MvpController.vote(); user email: " + user.getEmail());
+		System.out.println("exhibition end date: " + ex.getExhibitionEnd().toString());
 		MvpDTO mvpdto = new MvpDTO();
 		mvpdto.setExhibition(ex);
 		mvpdto.setUser(user);
 		
 		DataBinder binder = new DataBinder(mvpdto);
-		binder.setValidator(new MvpExhibitionValidator());
+		binder.setValidator(mvpValidator);
 		binder.validate();
 		BindingResult results = binder.getBindingResult();
 		
@@ -86,6 +91,10 @@ public class MvpController {
 			}
 		    mvpdto.setPlayerList(list);
 			model.addAttribute("mvp", mvpdto);
+		}
+		else
+		{
+			model.addAttribute("errors", results.getAllErrors());
 		}
 		return "mvpVote";
 	}

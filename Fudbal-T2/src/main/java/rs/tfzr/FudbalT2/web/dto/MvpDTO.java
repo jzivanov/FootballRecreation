@@ -15,7 +15,7 @@ public class MvpDTO
 	@NotNull
 	private UserDetail user;
 	
-	private List<Player> playerList;
+	private List<Player> players;
 	
 	public Exhibition getExhibition() {
 		return exhibition;
@@ -30,9 +30,9 @@ public class MvpDTO
 		this.user = user;
 	}
 	public List<Player> getPlayerList() {
-		return playerList;
+		return players;
 	}
 	public void setPlayerList(List<Player> playerList) {
-		this.playerList = playerList;
+		this.players = playerList;
 	}
 }
