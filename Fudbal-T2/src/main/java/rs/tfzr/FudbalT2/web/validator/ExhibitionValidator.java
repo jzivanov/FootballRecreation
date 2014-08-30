@@ -6,12 +6,14 @@ package rs.tfzr.FudbalT2.web.validator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
@@ -34,6 +36,7 @@ public class ExhibitionValidator implements Validator {
 	
 	private final String EXHIBITION_DOES_NOT_EXIST = "page.exhibition.validation.exhibitionDoesNotExist";
 	private final String EXHIBITION_OVER = "page.exhibition.validation.exhibitionOver";
+	private final String PLAYER_ALREADY_APPLIED = "page.exhibition.validation.playerAlreadyApplied";
 
 	/* (non-Javadoc)
 	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
@@ -55,14 +58,16 @@ public class ExhibitionValidator implements Validator {
 		if(target != null && supports(target.getClass())){
 			Exhibition exhibition = (Exhibition) target;
 			List<Player> players = playerService.findAll(exhibition.getId());
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			for (Player player : players) {
-				player.getUser().getId()
+				if(player.getUser().getId() == user.getId())
+					errors.reject(PLAYER_ALREADY_APPLIED);
 				
 			}
 			if(exhibition.getEnded())
 				errors.reject(EXHIBITION_OVER);
 			
-			if(exhibition.)
+			
 		}
 	}
 
