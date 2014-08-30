@@ -68,12 +68,11 @@ public class MvpController {
 	{		
 		Exhibition ex = exhibitionService.findOne(id);
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	
+		
 		System.out.println("From MvpController.vote(); user email: " + user.getEmail());
 		System.out.println("exhibition end date: " + ex.getExhibitionEnd().toString());
 		MvpDTO mvpdto = new MvpDTO();
 		mvpdto.setExhibition(ex);
-		mvpdto.setUser(user);
 		
 		DataBinder binder = new DataBinder(mvpdto);
 		binder.setValidator(mvpValidator);
@@ -100,12 +99,15 @@ public class MvpController {
 		return "mvpVote";
 	}
 	
-	@RequestMapping(value = "/exhibition/{id}/vote/player/{idp}/user/{idu}", method = RequestMethod.GET)
-	public String vote(@PathVariable Long id, @PathVariable Long idp, @PathVariable Long idu)
+	@RequestMapping(value = "/exhibition/{id}/vote/player/{idp}", method = RequestMethod.GET)
+	public String vote(@PathVariable Long id, @PathVariable Long idp)
 	{
 		Exhibition exh = exhibitionService.findOne(id);
 		Player player = playerService.findOne(idp);
-		Player playerVote = playerService.findOne(idu, id);
+		
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Player playerVote = playerService.findOne(user.getId(), id);
+		
 		MVP mvp = new MVP(player, exh, playerVote);
 		mvpService.save(mvp);
 		return "redirect:mvp";

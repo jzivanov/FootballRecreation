@@ -12,8 +12,6 @@ public class MvpDTO
 {
 	@NotNull
 	private Exhibition exhibition;
-	@NotNull
-	private User user;
 	
 	private List<Player> players;
 	
@@ -23,12 +21,7 @@ public class MvpDTO
 	public void setExhibition(Exhibition exhibition) {
 		this.exhibition = exhibition;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 	public List<Player> getPlayerList() {
 		return players;
 	}

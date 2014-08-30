@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.Player;
+import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
@@ -32,6 +34,7 @@ public class MvpExhibitionValidator implements Validator
 	private final String VOTING_IS_NOT_LONGER_AVAILABLE = "page.mvp.validation.vottingNotAvailable";
 	private final String USER_MUST_BE_PRESENT = "page.mvp.validation.userMustBePresent";
 	private final String USER_ALREADY_VOTED = "page.mvp.validation.userAlreadyVoted";
+	private final String EXHIBITION_DOES_NOT_EXIST = "page.exhibition.validation.exhibitionDoesNotExist";
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -51,33 +54,39 @@ public class MvpExhibitionValidator implements Validator
 		if(target != null && supports(target.getClass()))
 		{
 			MvpDTO mvp = (MvpDTO)target;
-			if(!mvp.getExhibition().getEnded())
-			{
-				errors.reject(EXHIBITION_MUST_BE_OVER);
-			}
+			if(mvp.getExhibition() == null)
+				errors.reject(EXHIBITION_DOES_NOT_EXIST);
 			else
 			{
-				if(exhibitionService == null)
-					System.out.println("Exhibition service is null");
-				List<Exhibition> list = exhibitionService.findAll();
-				for(Exhibition exb: list)
+				if(!mvp.getExhibition().getEnded())
 				{
-					if(exb.getExhibitionStart().before(new Date()))
-					{
-						errors.reject(VOTING_IS_NOT_LONGER_AVAILABLE);
-						break;
-					}
-				}
-				
-				Player player = playerService.findOne(mvp.getUser().getId(), mvp.getExhibition().getId());
-				if(player == null)
-				{
-					errors.reject(USER_MUST_BE_PRESENT);
+					errors.reject(EXHIBITION_MUST_BE_OVER);
 				}
 				else
 				{
-					if(mvpService.playerVoted(player.getId(), mvp.getExhibition().getId()))
-						errors.reject(USER_ALREADY_VOTED);
+					if(exhibitionService == null)
+						System.out.println("Exhibition service is null");
+					List<Exhibition> list = exhibitionService.findAll();
+					for(Exhibition exb: list)
+					{
+						if(exb.getExhibitionStart().before(new Date()))
+						{
+							errors.reject(VOTING_IS_NOT_LONGER_AVAILABLE);
+							break;
+						}
+					}
+
+					User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+					Player player = playerService.findOne(user.getId(), mvp.getExhibition().getId());
+					if(player == null)
+					{
+						errors.reject(USER_MUST_BE_PRESENT);
+					}
+					else
+					{
+						if(mvpService.playerVoted(player.getId(), mvp.getExhibition().getId()))
+							errors.reject(USER_ALREADY_VOTED);
+					}
 				}
 			}
 		}
