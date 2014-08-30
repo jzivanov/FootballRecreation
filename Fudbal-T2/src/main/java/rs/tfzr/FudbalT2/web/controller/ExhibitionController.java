@@ -157,10 +157,15 @@ public class ExhibitionController {
 		BindingResult results = binder.getBindingResult();
 		if (!results.hasErrors()) {
 			exhibitionService.addPlayer(exhibition, userId);
+			model.addAttribute("exhibition", exhibition);
+		}
+		else
+		{
+			model.addAttribute("errors", results.getAllErrors());
 		}
 
-		model.addAttribute("exhibition", exhibitionId);
-		return "redirect:exhibitions";
+		
+		return "applied";
 	}
 
 	// Removes a player from an exhibition
