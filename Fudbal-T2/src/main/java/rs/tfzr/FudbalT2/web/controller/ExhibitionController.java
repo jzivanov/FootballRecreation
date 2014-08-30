@@ -56,8 +56,7 @@ public class ExhibitionController {
 		List<ExhibitionDTO> retVal = new ArrayList<>();
 		List<Exhibition> exhibitions = exhibitionService.findAll();
 		ExhibitionDTO dto = new ExhibitionDTO();
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		for (Exhibition exhibition : exhibitions) {
 			dto = new ExhibitionDTO();
 			dto.setId(exhibition.getId());
@@ -145,18 +144,18 @@ public class ExhibitionController {
 	// @param model
 	// @returns the name of the view for adding/removing a player to/from an
 	// exhibition
-	@RequestMapping(value = "/{iexhibitionID}/user/{userID}", method = RequestMethod.GET)
-	public String addPlayer(@PathVariable("iexhibitionID") Long exhibitionId,
-			Long userId, Model model) {
-
+	@RequestMapping(value = "/{iexhibitionID}", method = RequestMethod.GET)
+	public String addPlayer(@PathVariable("iexhibitionID") Long exhibitionId, Model model) {
+		
 		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
-
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		DataBinder binder = new DataBinder(exhibition);
 		binder.setValidator(exhibitionValidator);
 		binder.validate();
 		BindingResult results = binder.getBindingResult();
 		if (!results.hasErrors()) {
-			exhibitionService.addPlayer(exhibition, userId);
+			exhibitionService.addPlayer(exhibition, user.getId());
 			model.addAttribute("exhibition", exhibition);
 		}
 		else

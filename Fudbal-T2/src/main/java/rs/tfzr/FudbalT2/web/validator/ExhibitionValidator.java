@@ -3,12 +3,15 @@
  */
 package rs.tfzr.FudbalT2.web.validator;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
+import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
@@ -51,8 +54,15 @@ public class ExhibitionValidator implements Validator {
 		
 		if(target != null && supports(target.getClass())){
 			Exhibition exhibition = (Exhibition) target;
+			List<Player> players = playerService.findAll(exhibition.getId());
+			for (Player player : players) {
+				player.getUser().getId()
+				
+			}
 			if(exhibition.getEnded())
 				errors.reject(EXHIBITION_OVER);
+			
+			if(exhibition.)
 		}
 	}
 

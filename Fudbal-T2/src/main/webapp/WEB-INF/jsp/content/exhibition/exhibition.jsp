@@ -13,7 +13,7 @@
 	<tr>
 		<td><c:out value="${exhibition.startDate}"></c:out></td>
 		<td><c:out value="${exhibition.endDate}"></c:out></td></br>
-		<td><a href="<c:url value="/exhibitions/${exhibition.id}/user/${exhibition.userId}" />">Apply</a></td>
+		<td><a href="<c:url value="/exhibitions/${exhibition.id}" />">Apply</a></td>
 	</tr>
 </c:forEach>
 
