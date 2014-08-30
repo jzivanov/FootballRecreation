@@ -58,6 +58,12 @@
 			value="/WEB-INF/jsp/content/exhibition/exhibition.jsp" />
 	</definition>
 	
+	<definition name="applied" extends="standardLayout">
+		<put-attribute name="title" value="page.exhibitions.title" />
+		<put-attribute name="content"
+			value="/WEB-INF/jsp/content/exhibition/applied.jsp" />
+	</definition>
+	
 	<definition name="comments" extends="standardLayout">
 		<put-attribute name="title" value="page.comments.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/comments/comments.jsp" />
