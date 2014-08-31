@@ -52,7 +52,12 @@
 </nav>
 	
 <section id="mainContent">
-	<tiles:insertAttribute name="content" />
+	<div class="row">
+		<div class="col-sm-1 col-md-1"></div>
+		<div class="col-sm-10 col-md-10">
+			<tiles:insertAttribute name="content" />
+		</div>
+	</div>
 </section>
 
 </body>
