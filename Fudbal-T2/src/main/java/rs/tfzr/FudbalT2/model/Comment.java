@@ -22,7 +22,8 @@ public class Comment extends AbstractBaseEntity {
     @JoinColumn(name = "exhibition_id", nullable = false)
 	private Exhibition exhibition;
 	private Comment mainComment;
-	private String content;
+	private String body;
+	private String title;
 	
 	public Comment()
 	{
@@ -30,16 +31,16 @@ public class Comment extends AbstractBaseEntity {
 		this.exhibition = new Exhibition();
 	}
 	
-	public Comment(User user, Exhibition exhibition, String content)
+	public Comment(User user, Exhibition exhibition, String title, String body)
 	{
 		this.user = user;
 		this.exhibition = exhibition;
-		this.content = content;
+		this.body = body;
 	}
 	
-	public Comment(User user, Exhibition exhibition, String content, Comment mainComment)
+	public Comment(User user, Exhibition exhibition, String title, String body, Comment mainComment)
 	{
-		this(user, exhibition, content);
+		this(user, exhibition, title, body);
 		this.mainComment = mainComment;
 	}
 	
@@ -61,10 +62,18 @@ public class Comment extends AbstractBaseEntity {
 	public void setMainComment(Comment mainComment) {
 		this.mainComment = mainComment;
 	}
-	public String getContent() {
-		return content;
+	public String getBody() {
+		return body;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setBody(String content) {
+		this.body = content;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -64,8 +63,6 @@ public class MvpExhibitionValidator implements Validator
 				}
 				else
 				{
-					if(exhibitionService == null)
-						System.out.println("Exhibition service is null");
 					List<Exhibition> list = exhibitionService.findAll();
 					for(Exhibition exb: list)
 					{

@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +22,9 @@ import rs.tfzr.FudbalT2.service.ExhibitionService;
 import rs.tfzr.FudbalT2.service.MvpService;
 import rs.tfzr.FudbalT2.service.PlayerService;
 import rs.tfzr.FudbalT2.web.dto.MvpDTO;
+import rs.tfzr.FudbalT2.web.dto.MvpVoteDTO;
 import rs.tfzr.FudbalT2.web.validator.MvpExhibitionValidator;
+import rs.tfzr.FudbalT2.web.validator.MvpVoteValidator;
 
 @Controller
 @RequestMapping("/mvp")
@@ -41,6 +41,9 @@ public class MvpController {
 	
 	@Autowired
 	private MvpExhibitionValidator mvpValidator;
+	
+	@Autowired
+	private MvpVoteValidator mvpVoteValidator;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ModelAttribute("mvps")
@@ -104,12 +107,23 @@ public class MvpController {
 	{
 		Exhibition exh = exhibitionService.findOne(id);
 		Player player = playerService.findOne(idp);
+		MvpVoteDTO dto = new MvpVoteDTO();
+		dto.setExhibition(exh);
+		dto.setPlayer(player);
+
+		DataBinder binder = new DataBinder(dto);
+		binder.setValidator(mvpVoteValidator);
+		binder.validate();
+		BindingResult results = binder.getBindingResult();
 		
-		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Player playerVote = playerService.findOne(user.getId(), id);
+		if(!results.hasErrors())
+		{
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Player playerVote = playerService.findOne(user.getId(), id);
+			MVP mvp = new MVP(player, exh, playerVote);
+			mvpService.save(mvp);
+		}
 		
-		MVP mvp = new MVP(player, exh, playerVote);
-		mvpService.save(mvp);
 		return "redirect:mvp";
 	}
 }

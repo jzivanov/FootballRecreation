@@ -51,9 +51,9 @@ public class InMemoryCommentTest
 		user3.setEmail("email");
 		user3.setPassword("df");
 		
-		Comment comment1 = new Comment(user1, exhibition1, "comment on exhibition1 from user1");
-		Comment commentOnComment1 = new Comment(user2, exhibition1, "comment on comment, from user2", comment1);
-		Comment commentOnComment1_2 = new Comment(user3, exhibition1, "comment", comment1);
+		Comment comment1 = new Comment(user1, exhibition1, null, "comment on exhibition1 from user1");
+		Comment commentOnComment1 = new Comment(user2, exhibition1, null, "comment on comment, from user2", comment1);
+		Comment commentOnComment1_2 = new Comment(user3, exhibition1, null, "comment", comment1);
 		service.save(comment1);
 		service.save(commentOnComment1);
 		service.save(commentOnComment1_2);
@@ -75,10 +75,10 @@ public class InMemoryCommentTest
 		
 		for(Comment comment: map.keySet())
 		{
-			System.out.println(comment.getContent());
+			System.out.println(comment.getBody());
 			for(Comment c: map.get(comment))
 			{
-				System.out.println("---" + c.getContent());
+				System.out.println("---" + c.getBody());
 			}
 		}
 	}

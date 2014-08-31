@@ -22,7 +22,7 @@
 						<c:out value="${player.user.lastName}" /> <c:out value="${player.user.firstName}"/>
 					</td>
 					<td>
-						<a href="<c:url value="/mvp/exhibition/${mvp.exhibition.id}/vote/player/${player.id}/user/${mvp.user.id}" />">Vote</a>
+						<a href="<c:url value="/mvp/exhibition/${mvp.exhibition.id}/vote/player/${player.id}" />">Vote</a>
 					</td>
 				</tr>
 			</c:forEach>

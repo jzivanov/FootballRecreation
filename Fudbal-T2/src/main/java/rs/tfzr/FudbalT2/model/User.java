@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -42,8 +42,8 @@ public class User extends AbstractBaseEntity implements UserDetails
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		GrantedAuthority roleUser = new GrantedAuthorityImpl("ROLE_USER");
-		GrantedAuthority roleAdmin = new GrantedAuthorityImpl("ROLE_ADMIN");
+		GrantedAuthority roleUser = new SimpleGrantedAuthority("ROLE_USER");
+		GrantedAuthority roleAdmin = new SimpleGrantedAuthority("ROLE_ADMIN");
 		Collection<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 		if(isAdmin) list.add(roleAdmin);
 		else list.add(roleUser);
