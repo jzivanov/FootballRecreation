@@ -2,8 +2,8 @@
 <%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
 
 <div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
 	<div class="panel panel-info">
 		<div class="panel-heading">
     		<h3 class="panel-title"><fmt:message key="page.login.fillForm" /></h3>
@@ -16,7 +16,7 @@
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<strong>Warning!</strong><fmt:message key="${error}" />
+				<strong><fmt:message key="common.alter.warning" /> </strong><fmt:message key="${error}" />
 			</div>
 		</c:if>
 
