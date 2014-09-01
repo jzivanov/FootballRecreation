@@ -23,11 +23,18 @@
 					<div class="${formTitleClass}">
   						<div class="panel-heading">
   							<c:choose>
-  								<c:when test="${not empty mainComment}">
-    								<h3 class="panel-title"><strong><fmt:message key="page.comments.replyToCommentTitle" />: ${mainComment.title}</strong></h3>
+  								<c:when test="${not empty editComment}">
+    								<h3 class="panel-title"><strong><fmt:message key="page.comments.editCommentTitle" /></strong></h3>
   								</c:when>
   								<c:otherwise>
-    								<h3 class="panel-title"><strong><fmt:message key="page.comments.insertCommentTitle" /></strong></h3>
+  									<c:choose>
+  										<c:when test="${not empty mainComment}">
+    										<h3 class="panel-title"><strong><fmt:message key="page.comments.replyToCommentTitle" />: ${mainComment.title}</strong></h3>
+  										</c:when>
+  										<c:otherwise>
+    										<h3 class="panel-title"><strong><fmt:message key="page.comments.insertCommentTitle" /></strong></h3>
+  										</c:otherwise>
+  									</c:choose>
   								</c:otherwise>
   							</c:choose>
   						</div>
@@ -35,6 +42,9 @@
 							<form:hidden path="exhibitionId"/>
 							<c:if test="${not empty comment.mainCommentId}">
 								<form:hidden path="mainCommentId" />
+							</c:if>
+							<c:if test="${not empty comment.id}">
+								<form:hidden path="id" />
 							</c:if>
 							<div class="form-group">
 								<form:label path="title"><fmt:message key="page.comments.comment.title" /></form:label>
@@ -86,6 +96,9 @@
   						<c:if test="${userId == commentsMap.key.user.id}">
 							<a href="<c:url value="/comments/remove/${commentsMap.key.id}" />">
 								<fmt:message key="page.comments.remove" />
+							</a>
+							<a href="<c:url value="/comments/exhibition/${commentsMap.key.exhibition.id}/edit/${commentsMap.key.id}" />" >
+								<fmt:message key="page.comments.edit" />
 							</a>
 						</c:if>
 						<a href="<c:url value="/comments/exhibition/${commentsMap.key.exhibition.id}/add/${commentsMap.key.id}" />">

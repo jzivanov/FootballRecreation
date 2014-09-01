@@ -94,6 +94,38 @@ public class CommentController
 		}
 		return "comments";
 	}
+
+	@RequestMapping(value = "/exhibition/{exhibitionId}/edit/{commentId}", method = RequestMethod.GET)
+	public String edit(@PathVariable Long exhibitionId, Comment comment, Model model)
+	{
+		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
+		DataBinder binder = new DataBinder(exhibition);
+		binder.setValidator(exhibitionAvailableValidator);
+		binder.validate();
+		BindingResult results = binder.getBindingResult();
+		
+		if(!results.hasErrors())
+		{
+			CommentDTO dto = new CommentDTO();
+			dto.setId(comment.getId());
+			dto.setBody(comment.getBody());
+			dto.setExhibitionId(exhibitionId);
+			if(comment.getMainComment() != null)
+				dto.setMainCommentId(comment.getMainComment().getId());
+			dto.setTitle(comment.getTitle());
+			model.addAttribute("comment", dto);
+			
+			model.addAttribute("editComment", dto);
+			model.addAttribute("commentsMap", commentService.getCommentsForExhibition(exhibitionId));
+			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			model.addAttribute("userId", user.getId());
+		}
+		else
+		{
+			model.addAttribute("errors", results.getAllErrors());
+		}
+		return "comments";
+	}
 	
 	@RequestMapping(params = "save", method = RequestMethod.POST)
 	public String setComment(@Valid CommentDTO comment, BindingResult bindingResult, Model model)
@@ -101,6 +133,8 @@ public class CommentController
 		if(!bindingResult.hasErrors())
 		{
 			Comment comm = new Comment();
+			if(comment.getId() != null)
+				comm.setId(comm.getId());
 			comm.setExhibition(exhibitionService.findOne(comment.getExhibitionId()));
 			comm.setBody(comment.getBody());
 			if(comment.getMainCommentId() != null)

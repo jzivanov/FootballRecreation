@@ -23,6 +23,7 @@
         <property name="converters">
             <list>
                 <bean class="rs.tfzr.FudbalT2.web.converter.StringToTeamConverter" />
+                <bean class="rs.tfzr.FudbalT2.web.converter.StringToCommentConverter" />
             </list>
         </property>
     </bean>

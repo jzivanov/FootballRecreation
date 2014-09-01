@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class CommentDTO 
 {
+	Long id;
 	Long userId;
 	@NotNull
 	Long exhibitionId;
@@ -44,5 +45,11 @@ public class CommentDTO
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
