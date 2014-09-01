@@ -20,18 +20,24 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 	{
 		User user = new User();
 		user.setEmail("zjovan.ost@gmail.com");
+		user.setFirstName("Jovan");
+		user.setLastName("Zivanov");
 		user.setPassword("123");
 		user.setUsername("zjovan.ost@gmail.com");
 		user.setId(1L);
 		
 		User user2 = new User();
 		user2.setEmail("pera@kojot");
+		user.setFirstName("Pera kojot");
+		user.setLastName("Super genije");
 		user2.setPassword("123");
 		user2.setUsername("pera@kojot");
 		user.setId(2L);
 		
 		User user3 = new User();
 		user3.setEmail("bip@bip");
+		user.setFirstName("Bip");
+		user.setLastName("Bip");
 		user3.setPassword("123");
 		user3.setUsername("bip@bip");
 		user.setId(3L);
@@ -86,16 +92,6 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 		player7.setTeam(Player.Team.Away);
 		player7.setUser(user);
 		
-		Player player8 = new Player();
-		player8.setExhibition(exhibition3);
-		player8.setTeam(Player.Team.Away);
-		player8.setUser(user2);
-		
-		Player player9 = new Player();
-		player9.setExhibition(exhibition3);
-		player9.setTeam(Player.Team.Home);
-		player9.setUser(user3);
-		
 		save(player1);
 		save(player2);
 		save(player3);
@@ -103,8 +99,6 @@ public class InMemoryPlayerService extends AbstractInMemoryService<Player>
 		save(player5);
 		save(player6);
 		save(player7);
-		save(player8);
-		save(player9);
 	}
 	
 	@Override

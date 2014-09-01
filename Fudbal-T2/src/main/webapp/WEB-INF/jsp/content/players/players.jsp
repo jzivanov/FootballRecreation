@@ -1,45 +1,142 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/common/tagLibs.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/common/tagLibs.jsp"%>
 
-<c:set var="home" value="<%= rs.tfzr.FudbalT2.model.Player.Team.Home %>"></c:set>
-<c:set var="away" value="<%= rs.tfzr.FudbalT2.model.Player.Team.Away %>"></c:set>
-<c:set var="none" value="<%= rs.tfzr.FudbalT2.model.Player.Team.None %>"></c:set>
-<h1>Team home</h1>
-<c:forEach items="${players}" var="player">
-	<tr>
-		<c:if test="${player.team == home}">
-			<td><c:out value="${player.exhibition.exhibitionStart}"></c:out></td>
-			<td><c:out value="${player.user.firstName}"></c:out></td>
-			<td><c:out value="${player.user.lastName}"></c:out></td>
-			<td><c:out value="${player.team}"></c:out></td>
-			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/0" />">None</a></td>
-			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/2" />">Away</a></td>
+<c:choose>
+	<c:when test="${not empty errors}">
+		<c:forEach items="${errors}" var="error">
+			<fmt:message key="${error.code}" />
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+
+		<c:set var="home" value="<%=rs.tfzr.FudbalT2.model.Player.Team.Home%>"></c:set>
+		<c:set var="away" value="<%=rs.tfzr.FudbalT2.model.Player.Team.Away%>"></c:set>
+		<c:set var="none" value="<%=rs.tfzr.FudbalT2.model.Player.Team.None%>"></c:set>
+		<div
+			style="line-height: 40px; margin-bottom: 0px; width: 100%; border-bottom: 1px solid #DDD; padding-bottom: 5px;">
+			<h1 style="display: inline;">
+				<fmt:message key="page.players.title" />
+			</h1>
+			<a style="display: inline; margin-left: 20px;" class="btn btn-info"
+				href="<c:url value="/players/exhibition/${exhibitionId}/add" />"
+				role="button"> <fmt:message key="page.players.addPlayer" />
+			</a>
+		</div>
+		<div>
+
+			<h3 class="bg-success"
+				style="padding: 15px; color: #666; margin-top: 0px;">
+				<fmt:message key="page.players.exhibitionStartTitle" />
+				: <small><c:out value="${exhibitionStart}" /></small>
+			</h3>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th><fmt:message key="page.players.table.user" /></th>
+					<th><fmt:message key="page.players.table.team" /></th>
+					<sec:authorize ifAllGranted="ROLE_ADMIN">
+						<th><fmt:message key="page.players.table.changeTeam" /></th>
+					</sec:authorize>
+				</tr>
+			</thead>
+			<c:forEach items="${players}" var="player">
+				<tr class="info">
+					<c:if test="${player.team == home}">
+						<td><a href="<c:url value="/users/${player.userId}" />">
+								<c:out value="${player.firstName}"></c:out> <c:out
+									value="${player.lastName}"></c:out>
+						</a></td>
+						<td><fmt:message key="page.player.team.home" /></td>
+						<sec:authorize ifAllGranted="ROLE_ADMIN">
+							<td><a
+								href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/0" />">
+									<fmt:message key="page.player.team.none" />
+							</a> <a
+								href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/2" />">
+									<fmt:message key="page.player.team.away" />
+							</a></td>
+						</sec:authorize>
+					</c:if>
+				</tr>
+			</c:forEach>
+			<c:forEach items="${players}" var="player">
+				<tr class="active">
+					<c:if test="${player.team == away}">
+						<td><a href="<c:url value="/users/${player.userId}" />">
+								<c:out value="${player.firstName}"></c:out> <c:out
+									value="${player.lastName}"></c:out>
+						</a></td>
+						<td><fmt:message key="page.player.team.away" /></td>
+						<sec:authorize ifAllGranted="ROLE_ADMIN">
+							<td><a
+								href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/0" />">
+									<fmt:message key="page.player.team.none" />
+							</a> <a
+								href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/1" />">
+									<fmt:message key="page.player.team.home" />
+							</a></td>
+						</sec:authorize>
+					</c:if>
+				</tr>
+			</c:forEach>
+			<c:forEach items="${players}" var="player">
+				<tr>
+					<c:if test="${player.team == none}">
+						<td><a href="<c:url value="/users/${player.userId}" />">
+								<c:out value="${player.firstName}"></c:out> <c:out
+									value="${player.lastName}"></c:out>
+						</a></td>
+						<td><fmt:message key="page.player.team.none" /></td>
+						<sec:authorize ifAllGranted="ROLE_ADMIN">
+							<td><a
+								href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/1" />">
+									<fmt:message key="page.player.team.home" />
+							</a> <a
+								href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/2" />">
+									<fmt:message key="page.player.team.away" />
+							</a></td>
+						</sec:authorize>
+					</c:if>
+				</tr>
+			</c:forEach>
+		</table>
+
+		<!-- USERS -->
+		<c:if test="${not empty users}">
+			<h1>
+				<fmt:message key="page.users.title" />
+				<small> <fmt:message key="page.players.addPlayer" />
+				</small>
+			</h1>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th><fmt:message key="page.players.table.user" /></th>
+						<th><fmt:message key="page.players.addPlayer" /></th>
+					</tr>
+				</thead>
+				<c:forEach items="${users}" var="user">
+					<tr>
+						<td>
+							<a href="<c:url value="/users/${user.id}" />">
+								<c:if test="${not empty user.first}">
+									<c:out value="${user.firstName}" />
+								</c:if>
+								<c:if test="${not empty user.last}">
+									<c:out value="${user.lastName}" />
+								</c:if>
+								<c:if test="${not empty user.username}">
+									<c:out value="${user.username}" />
+								</c:if>
+							</a>
+						</td>
+						<td><a href="<c:url value="/players/exhibition/${exhibitionId}/add/${user.id}" />"> <fmt:message key="common.action.add" />
+						</a></td>
+					</tr>
+				</c:forEach>
+			</table>
 		</c:if>
-	</tr>
-</c:forEach>
-<h1>Team away</h1>
-<c:forEach items="${players}" var="player">
-	<tr>
-		<c:if test="${player.team == away}">
-			<td><c:out value="${player.exhibition.exhibitionStart}"></c:out></td>
-			<td><c:out value="${player.user.firstName}"></c:out></td>
-			<td><c:out value="${player.user.lastName}"></c:out></td>
-			<td><c:out value="${player.team}"></c:out></td>
-			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/0" />">None</a></td>
-			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/1" />">Home</a></td>
-		</c:if>
-	</tr>
-</c:forEach>
-<h1>Not assigned players</h1>
-<c:forEach items="${players}" var="player">
-	<tr>
-		<c:if test="${player.team == none}">
-			<td><c:out value="${player.exhibition.exhibitionStart}"></c:out></td>
-			<td><c:out value="${player.user.firstName}"></c:out></td>
-			<td><c:out value="${player.user.lastName}"></c:out></td>
-			<td><c:out value="${player.team}"></c:out></td>
-			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/1" />">Home</a></td>
-			<td><a href="<c:url value="/players/exhibition/${player.exhibition.id}/player/${player.id}/team/2" />">Away</a></td>
-		</c:if>
-	</tr>
-</c:forEach>
+	</c:otherwise>
+</c:choose>

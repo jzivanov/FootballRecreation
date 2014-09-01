@@ -18,6 +18,7 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 		user.setEmail("zjovan.ost@gmail.com");
 		user.setPassword("123");
 		user.setUsername("zjovan.ost@gmail.com");
+		user.setAdmin(true);
 		
 		User user2 = new User();
 		user2.setEmail("pera@kojot");
