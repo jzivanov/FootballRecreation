@@ -47,7 +47,7 @@
 				<c:forEach items="${players}" var="player">
 					<tr class="info">
 						<c:if test="${player.team == home}">
-							<td><a href="<c:url value="/users/${player.userId}" />">
+							<td><a href="<c:url value="/user/users/${player.userId}" />">
 									<c:out value="${player.firstName}"></c:out> <c:out
 										value="${player.lastName}"></c:out>
 							</a></td>
