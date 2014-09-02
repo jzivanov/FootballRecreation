@@ -30,21 +30,56 @@
 	</div>
 	<c:if test="${not empty user}">
 		<div class="col-md-8">
-			<div style="width: 100%;">
-				<label><fmt:message key="page.register.form.firstName" /></label>${user.firstName}
+			<div style="width: 90%; background-color: #B088BE; color:#fff; line-height: 60px; margin-bottom: 20px;">
+				<h4 style="border:1px solid #B088BE; display: inline; margin-left:20px;">
+					${user.firstName}
+					${user.lastName}</h4>
 			</div>
-			<div style="width: 100%;">
-				<label><fmt:message key="page.register.form.lastName" /></label>${user.lastName}
-			</div>
-			<div style="width: 100%;">
-				<label><fmt:message key="page.register.form.userName" /></label>${user.username}
-			</div>
-			<div style="width: 100%;">
-				<label>Email</label>${user.email}
-			</div>
-			<div style="width: 100%;">
-				<label><fmt:message key="page.register.form.phoneNumber" /></label>${user.phoneNumber}
-			</div>
+				<div class="row" style="width: 90%; padding: 15px; border:1px solid #D2AADF; border-left-width: 2px; margin-bottom:10px; margin-left:0px;">
+					<div class="col-md-4">
+						<span style="color:#777;"><fmt:message key="page.register.form.firstName" /></span>
+					</div>
+					<div class="col-md-8">
+						${user.firstName}
+					</div>
+				</div>
+				<div class="row" style="width: 90%; padding: 15px; border:1px solid #D2AADF; border-left-width: 2px; margin-bottom:10px;  margin-left:0px;">
+					<div class="col-md-4">
+						<span style="color:#777;"><fmt:message key="page.register.form.lastName" /></span>
+					</div>
+					<div class="col-md-8">
+						${user.lastName}
+					</div>
+				</div>
+				<div class="row" style="width: 90%; padding: 15px; border:1px solid #D2AADF; border-left-width: 2px; margin-bottom:10px;  margin-left:0px;">
+					<div class="col-md-4">
+						<span style="color:#777;"><fmt:message key="page.register.form.userName" /></span>
+					</div>
+					<div class="col-md-6">
+						${user.username}
+					</div>
+				</div>
+				<div class="row" style="width: 90%; padding: 15px; border:1px solid #D2AADF; border-left-width: 2px; margin-bottom:10px;  margin-left:0px;">
+					<div class="col-md-4">
+						<span style="color:#777;"><fmt:message key="page.register.form.email" /></span>
+					</div>
+					<div class="col-md-8">
+						${user.email}
+					</div>
+				</div>
+				<div class="row" style="width: 90%; padding: 15px; padding-right:0; border:1px solid #D2AADF; border-left-width: 2px; margin-bottom:10px;  margin-left:0px;">
+					<div class="col-md-4">
+						<span style="color:#777;"><fmt:message key="page.register.form.phoneNumber" /></span>
+					</div>
+					<div class="col-md-8">
+						${user.phoneNumber}
+					</div>
+				</div>
+				<div class="row" style="width: 90%; padding: 15px; padding-right:0; border:1px solid #31BC86; border-left-width: 2px; margin-bottom:10px;  margin-left:0px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-success">Primary</button>
+					</div>
+				</div>
 		</div>
 	</c:if>
 </div>
