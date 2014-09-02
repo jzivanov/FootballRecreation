@@ -20,6 +20,8 @@ public final class ExhibitionDTO {
 	@NotNull
 	private Date endDate;
 	
+	private boolean ended;
+	
 	private Long userId;
 
 	public Long getUserId() {
@@ -52,6 +54,14 @@ public final class ExhibitionDTO {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	
+	public void setEnded(boolean ended) {
+		this.ended = ended;
+	}
+
+	public boolean getEnded() {
+		return ended;
 	}
 	
 	

@@ -146,7 +146,7 @@ public class ExhibitionController {
 	// exhibition
 	@RequestMapping(value = "/{iexhibitionID}", method = RequestMethod.GET)
 	public String addPlayer(@PathVariable("iexhibitionID") Long exhibitionId, Model model) {
-		
+		String viewName;
 		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
@@ -157,14 +157,16 @@ public class ExhibitionController {
 		if (!results.hasErrors()) {
 			exhibitionService.addPlayer(exhibition, user.getId());
 			model.addAttribute("exhibition", exhibition);
+			viewName="applied";
 		}
 		else
 		{
 			model.addAttribute("errors", results.getAllErrors());
+			viewName = "exhibitions";
 		}
 
 		
-		return "applied";
+		return viewName;
 	}
 
 	// Removes a player from an exhibition

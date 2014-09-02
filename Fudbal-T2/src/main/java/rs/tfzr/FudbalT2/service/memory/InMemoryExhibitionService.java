@@ -42,7 +42,7 @@ public class InMemoryExhibitionService extends
 		exhibition2.setId(2L);
 				
 		exhibition2.setExhibitionStart(new Date());
-		exhibition2.setEnded(false);
+		exhibition2.setEnded(true);
 		
 		Exhibition exhibition3 = new Exhibition();
 		exhibition3.setId(3L);
