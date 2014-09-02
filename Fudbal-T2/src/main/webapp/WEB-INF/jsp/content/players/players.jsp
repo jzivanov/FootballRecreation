@@ -67,7 +67,7 @@
 				<c:forEach items="${players}" var="player">
 					<tr class="active">
 						<c:if test="${player.team == away}">
-							<td><a href="<c:url value="/users/${player.userId}" />">
+							<td><a href="<c:url value="/user/users/${player.userId}" />">
 									<c:out value="${player.firstName}"></c:out> <c:out
 										value="${player.lastName}"></c:out>
 							</a></td>
@@ -87,7 +87,7 @@
 				<c:forEach items="${players}" var="player">
 					<tr>
 						<c:if test="${player.team == none}">
-							<td><a href="<c:url value="/users/${player.userId}" />">
+							<td><a href="<c:url value="/user/users/${player.userId}" />">
 									<c:out value="${player.firstName}"></c:out> <c:out
 										value="${player.lastName}"></c:out>
 							</a></td>
@@ -122,7 +122,7 @@
 				</thead>
 				<c:forEach items="${users}" var="user">
 					<tr>
-						<td><a href="<c:url value="/users/${user.id}" />"> 
+						<td><a href="<c:url value="/user/users/${user.id}" />"> 
 									<c:out value="${user.firstName}" />
 									<c:out value="${user.lastName}" />
 									<c:out value="${user.username}" />
