@@ -83,5 +83,10 @@
 		<put-attribute name="title" value="page.users.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/users.jsp" />
 	</definition>
+	
+	<definition name="edit-user" extends="standardLayout">
+		<put-attribute name="title" value="page.users.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/editUser.jsp" />
+	</definition>
 
 </tiles-definitions>
