@@ -5,6 +5,7 @@ package rs.tfzr.FudbalT2.service.memory;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import rs.tfzr.FudbalT2.model.Exhibition;
@@ -23,8 +24,10 @@ import rs.tfzr.FudbalT2.service.UserService;
 public class InMemoryExhibitionService extends
 		AbstractInMemoryService<Exhibition> implements ExhibitionService {
 
+	@Autowired
 	private PlayerService playerService;
 
+	@Autowired
 	private UserService userService;
 	
 	public InMemoryExhibitionService() {

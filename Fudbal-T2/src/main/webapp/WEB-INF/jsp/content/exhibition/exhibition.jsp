@@ -18,9 +18,10 @@
 			<th><fmt:message key="page.exhibition.starttime" /></th>
 			<th><fmt:message key="page.exhibition.endtime" /></th>
 			<th><fmt:message key="page.exhibition.apply" /></th>
-			<th><fmt:message key="page.exhibition.comments" /></th>
+			<th><fmt:message key="page.exhibition.players"/></th>
 			<th><fmt:message key="page.exhibition.scorers" /></th>
 			<th><fmt:message key="page.exhibition.mvp" /></th>
+			<th><fmt:message key="page.exhibition.comments" /></th>
 		</tr>
 		<c:forEach items="${exhibitions}" var="exhibition">
 			<tr>
@@ -28,6 +29,7 @@
 				<td><c:out value="${exhibition.endDate}"></c:out></td>
 				</br>
 				<td><a href="<c:url value="/exhibitions/${exhibition.id}" />"><fmt:message key="page.exhibition.applyExhibition" /></a></td>
+				<td><a href="<c:url value="/players/exhibition/${exhibition.id}" />"><fmt:message key="page.exhibition.playersExhibition" /></a></td>
 				<td><a href="<c:url value="/comments/exhibition/${exhibition.id}" />"><fmt:message key="page.exhibition.commentsExhibition" /></a></td>
 				<td><a href="<c:url value="/scorers/exhibition/${exhibition.id}" />"><fmt:message key="page.exhibition.scorersExhibition" /></a></td>
 				<td><a href="<c:url value="/mvp/exhibition/${exhibition.id}" />"><fmt:message key="page.exhibition.mvpExhibition" /></a></td>
