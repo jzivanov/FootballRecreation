@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +40,7 @@ public class UserController
 
 	@RequestMapping(params = "register", value = "/register", method = RequestMethod.POST)
 	public String processRegistration(UserDTO user, Model model) {
-		
+		System.out.println("in process registration");
 		DataBinder binder = new DataBinder(user);
 		binder.addValidators(userValidator);
 		binder.validate();
@@ -81,5 +82,20 @@ public class UserController
 			model.addAttribute("logout_msg", "page.logout.msg");
 		
 		return "user-login";
+	}
+	
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public String viewUsers(Model model)
+	{
+		model.addAttribute("users", userService.findAll());
+		return "users";
+	}
+	
+	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+	public String viewUsers(@PathVariable Long userId, Model model)
+	{
+		model.addAttribute("users", userService.findAll());
+		model.addAttribute("user", userService.findOne(userId));
+		return "users";
 	}
 }

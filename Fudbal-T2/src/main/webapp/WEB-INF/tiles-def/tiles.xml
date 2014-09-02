@@ -78,5 +78,10 @@
 		<put-attribute name="title" value="page.login.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/login.jsp" />
 	</definition>
+	
+	<definition name="users" extends="standardLayout">
+		<put-attribute name="title" value="page.users.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/users.jsp" />
+	</definition>
 
 </tiles-definitions>

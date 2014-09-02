@@ -24,7 +24,6 @@ public class UserDetailAuthenticationProvider implements AuthenticationProvider
 		String password = (String)auth.getCredentials();
 		
 		User userDetails = (User) userDetailService.loadUserByUsername(username);
-		
 		if(userDetails == null)
 			throw new BadCredentialsException("Username not found.");
 		

@@ -28,7 +28,7 @@
 		</c:if>
 		
 		<form class="form-horizontal" role="form" name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>
-			<div class="form-group">
+			<div class="form-group" style="font-family: ">
 				<label for="email" class="col-sm-2 control-label">Email</label>
     			<div class="col-sm-10">
       				<input type="email" name="username" class="form-control" id="email" placeholder="Email">

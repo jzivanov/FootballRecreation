@@ -45,8 +45,6 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
 
-		User retUser = new User();
-
 		for(User user: findAll())
 		{
 			if(user.getUsername().equals(username))
