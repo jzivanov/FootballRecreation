@@ -123,7 +123,7 @@ public class ExhibitionController {
 			} else {
 				exhibition = new Exhibition();
 			}
-			exhibition.setExhibitionStart(new Date());
+			exhibition.setExhibitionStart(dto.getStartDate());
 			exhibition.setLocation(dto.getLocation());
 			exhibitionService.save(exhibition);
 			viewName = "redirect:exhibitions";
