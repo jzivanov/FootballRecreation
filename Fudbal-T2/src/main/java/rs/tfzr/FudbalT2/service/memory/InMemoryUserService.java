@@ -51,7 +51,7 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 		{
 			if(user.getUsername().equals(username))
 			{
-				return retUser;
+				return user;
 			}
 		}
 		return null;
