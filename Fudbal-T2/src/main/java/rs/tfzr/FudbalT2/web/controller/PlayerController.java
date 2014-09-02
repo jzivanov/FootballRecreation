@@ -61,8 +61,7 @@ public class PlayerController {
 	public String listAllPlayersOfExhibition(@PathVariable Long id, Model model)
 	{
 		Exhibition exhibition = exhibitionService.findOne(id);
-		BindingResult bindingResult = exhibitionAvailable(exhibition);
-		if(!bindingResult.hasErrors())
+		if(exhibition != null)
 		{
 			model.addAttribute("exhibitionId", id);
 			model.addAttribute("exhibitionStart", exhibition.getExhibitionStart());
@@ -80,10 +79,6 @@ public class PlayerController {
 				players.add(dto);
 			}
 			model.addAttribute("players", players);
-		}
-		else
-		{
-			model.addAttribute("errors", bindingResult.getAllErrors());
 		}
 		return "players";
 	}

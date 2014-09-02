@@ -3,6 +3,7 @@
 
 <div class="row">
 	<div class="col-md-4">
+		<sec:authorize ifAllGranted="ROLE_ADMIN">
 		<c:if test="${not empty disusers}">
 			<p style="padding: 10px; color:#fff; background-color: #31BC86;">
 				<strong>Nepotvrdjeni <fmt:message key="page.users.title" />:</strong>
@@ -32,6 +33,7 @@
 				</c:forEach>
 			</div>
 		</c:if>
+		</sec:authorize>
 		<p style="padding: 10px; color:#fff; background-color: #53DEA8;">
 			<strong>Registrovani <fmt:message key="page.users.title" />:</strong>
 		</p>
