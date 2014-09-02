@@ -1,5 +1,8 @@
 package rs.tfzr.FudbalT2.service.memory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,6 +38,8 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 		user3.setFirstName("bip");
 		user3.setLastName("bip");
 		user3.setUsername("bip@bip");
+		user3.setAdmin(true);
+		user3.setEnabled(true);
 		
 		this.save(user);
 		this.save(user2);
@@ -53,6 +58,28 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<User> disabledUsers() {
+		List<User> users = new ArrayList<User>();
+		for(User user: findAll())
+		{
+			if(!user.isEnabled())
+				users.add(user);
+		}
+		return users;
+	}
+
+	@Override
+	public List<User> enabledUsers() {
+		List<User> users = new ArrayList<User>();
+		for(User user: findAll())
+		{
+			if(user.isEnabled())
+				users.add(user);
+		}
+		return users;
 	}
 
 }

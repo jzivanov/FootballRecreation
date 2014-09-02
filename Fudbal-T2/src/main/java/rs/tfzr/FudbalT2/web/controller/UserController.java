@@ -1,10 +1,14 @@
 package rs.tfzr.FudbalT2.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,15 +91,57 @@ public class UserController
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public String viewUsers(Model model)
 	{
-		model.addAttribute("users", userService.findAll());
+		List<User> disusers = new ArrayList<User>();
+		disusers = userService.disabledUsers();
+		if(disusers.size() > 0)
+			model.addAttribute("disusers", userService.disabledUsers());
+		model.addAttribute("users", userService.enabledUsers());
 		return "users";
 	}
 	
 	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
 	public String viewUsers(@PathVariable Long userId, Model model)
 	{
-		model.addAttribute("users", userService.findAll());
+		model.addAttribute("disusers", userService.disabledUsers());
+		model.addAttribute("users", userService.enabledUsers());
 		model.addAttribute("user", userService.findOne(userId));
+		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("signeduserid", user.getId());
+		return "users";
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/users/{userId}/enable", method = RequestMethod.GET)
+	public String disEnableUser(
+			@RequestParam(value = "enable", required = false) String enable,
+			@RequestParam(value = "disable", required = false) String disable,
+			@PathVariable("userId") User user,
+			Model model)
+	{
+		if(enable != null)
+		{
+			user.setEnabled(true);
+			userService.save(user);
+		}
+		else if(disable != null)
+		{
+			user.setEnabled(false);
+			userService.save(user);
+		}
+		return "redirect:/user/users/" + user.getId();
+	}
+	
+	@RequestMapping(value = "/users/{userId}/remove", method = RequestMethod.GET)
+	public String remove(@PathVariable("userId") User user, Model model)
+	{
+		userService.remove(user.getId());
+		return "redirect:/user/users/";
+	}
+	
+	@RequestMapping(value = "/users/{userId}/edit", method = RequestMethod.GET)
+	public String edit(@PathVariable("userId") User user, Model model)
+	{
+		model.addAttribute("userform", user);
 		return "users";
 	}
 }

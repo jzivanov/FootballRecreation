@@ -45,4 +45,16 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public List<User> disabledUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> enabledUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

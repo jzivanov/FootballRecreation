@@ -29,6 +29,9 @@ public class UserDetailAuthenticationProvider implements AuthenticationProvider
 		
 		if(!password.equals(userDetails.getPassword()))
 			throw new BadCredentialsException("Wrong password.");
+		
+		if(!userDetails.isEnabled())
+			throw new BadCredentialsException("User is not enabled.");
 
 		return new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 	}

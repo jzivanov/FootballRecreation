@@ -38,7 +38,7 @@ public class User extends AbstractBaseEntity implements UserDetails
 	private boolean accountNonExpired = true;
 	private boolean accountNonLocked = true;
 	private boolean credentialsNonExpired = true;
-	private boolean enabled = true;
+	private boolean enabled = false;
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
