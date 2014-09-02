@@ -31,6 +31,8 @@ public class Exhibition extends AbstractBaseEntity {
 
 	private boolean ended;
 	
+	private String location;
+	
     @ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "scorer", joinColumns = @JoinColumn(name = "exhibition_id"))
 	private List<Scorers> scorers;
@@ -109,6 +111,14 @@ public class Exhibition extends AbstractBaseEntity {
 
 	public boolean getEnded() {
 		return ended;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public boolean equals(Object o) {

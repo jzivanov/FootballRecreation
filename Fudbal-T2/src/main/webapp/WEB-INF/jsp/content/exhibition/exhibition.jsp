@@ -2,7 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/common/tagLibs.jsp"%>
 
-
+<c:url var="action" value="/exhibitions" />
+<sec:authorize ifAllGranted="ROLE_ADMIN">
+<form:form action="${action}" method="post" modelAttribute="exhibitionForm">
+	<form:label path="location"><fmt:message key="page.exhibition.new.location" /></form:label>
+	<form:input path="location"/>
+	<form:errors path="location"></form:errors>
+	<form:label path="startDate"><fmt:message key="page.exhibition.new.startDate" /></form:label>
+	<form:input path="startDate"/>
+	<form:errors path="startDate"></form:errors>
+	<div>
+		<button type="submit" name="save"><fmt:message key="common.action.save" /></button>
+	</div>
+</form:form>
+</sec:authorize>
 
 <c:choose>
 	<c:when test="${not empty errors}">
@@ -14,13 +27,18 @@
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading" style="font-size: 35px">
-				<fmt:message key="page.exhibition.title" />
+				<h1 style="display: inline;">
+					<fmt:message key="page.exhibition.title" />
+				</h1>
+				
+
 			</div>
 
 
 			<!-- Table -->
 			<table class="table">
 				<tr>
+					<th><fmt:message key="page.exhibition.location" /></th>
 					<th><fmt:message key="page.exhibition.starttime" /></th>
 					<th><fmt:message key="page.exhibition.endtime" /></th>
 					<th><fmt:message key="page.exhibition.apply" /></th>
@@ -33,6 +51,7 @@
 					<c:choose>
 						<c:when test="${exhibition.ended == false}">
 							<tr>
+								<td><c:out value="${exhibition.location}"></c:out></td>
 								<td><c:out value="${exhibition.startDate}"></c:out></td>
 								<td><c:out value="${exhibition.endDate}"></c:out></td>
 								</br>
