@@ -9,12 +9,17 @@
 	<http pattern="/index.jsp" security="none"/>
 	<http pattern="/css/**" security="none"/>
 	<http pattern="/js/**" security="none"/>
-	<http pattern="/user/register" security="none"/>
+	<http pattern="/user/register/**" security="none"/>
+	<http pattern="/user/login/**" security="none" />
 	
     <http auto-config='true'>
         <intercept-url pattern="/players/**" access="ROLE_USER, ROLE_ADMIN" />
-        <intercept-url pattern="/mvp" access="ROLE_USER, ROLE_ADMIN" />
-        <intercept-url pattern="/scorers" access="ROLE_USER, ROLE_ADMIN" />
+        <intercept-url pattern="/mvp/**" access="ROLE_USER, ROLE_ADMIN" />
+        <intercept-url pattern="/scorers/**" access="ROLE_USER, ROLE_ADMIN" />
+        <intercept-url pattern="/user/**" access="ROLE_USER, ROLE_ADMIN" />
+        <intercept-url pattern="/exhibitions/**" access="ROLE_USER, ROLE_ADMIN" />
+        <intercept-url pattern="/comments/**" access="ROLE_USER, ROLE_ADMIN" />
+        
         <form-login 
         	login-page="/user/login"
 		    default-target-url="/home" 
