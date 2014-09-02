@@ -52,9 +52,11 @@ public class ExhibitionController {
 	// Returns the list of all exhibitions
 	@RequestMapping(method = RequestMethod.GET)
 	@ModelAttribute("exhibitions")
-	public List<ExhibitionDTO> get() {
+	public List<ExhibitionDTO> get(Model model) {
 		List<ExhibitionDTO> retVal = new ArrayList<>();
 		List<Exhibition> exhibitions = exhibitionService.findAll();
+		ExhibitionDTO exhibitionDTO = new ExhibitionDTO();
+		model.addAttribute("exhibitionForm", exhibitionDTO);
 		ExhibitionDTO dto = new ExhibitionDTO();
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		for (Exhibition exhibition : exhibitions) {
@@ -62,6 +64,7 @@ public class ExhibitionController {
 			dto.setId(exhibition.getId());
 			dto.setStartDate(exhibition.getExhibitionStart());
 			dto.setEndDate(exhibition.getExhibitionEnd());
+			dto.setLocation(exhibition.getLocation());
 			dto.setUserId(user.getId());
 			retVal.add(dto);
 		}
@@ -120,12 +123,14 @@ public class ExhibitionController {
 			} else {
 				exhibition = new Exhibition();
 			}
-			exhibition.setExhibitionStart(dto.getStartDate());
+			exhibition.setExhibitionStart(new Date());
+			exhibition.setLocation(dto.getLocation());
 			exhibitionService.save(exhibition);
 			viewName = "redirect:exhibitions";
 		} else {
-			model.addAttribute("exhibitionDTO", dto);
-			viewName = "addEditExhibitions";
+			
+			model.addAttribute("exhibitionForm", dto);
+			viewName = "redirect:exhibitions";
 		}
 		return viewName;
 	}

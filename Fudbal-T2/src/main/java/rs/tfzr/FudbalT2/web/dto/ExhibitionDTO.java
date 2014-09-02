@@ -17,10 +17,12 @@ public final class ExhibitionDTO {
 
 	@NotNull
 	private Date startDate;
-	@NotNull
+	
 	private Date endDate;
 	
 	private boolean ended;
+	
+	private String location;
 	
 	private Long userId;
 
@@ -62,6 +64,14 @@ public final class ExhibitionDTO {
 
 	public boolean getEnded() {
 		return ended;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 	
 	

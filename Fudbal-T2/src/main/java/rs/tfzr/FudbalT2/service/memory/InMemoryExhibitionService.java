@@ -34,19 +34,19 @@ public class InMemoryExhibitionService extends
 				
 		Exhibition exhibition = new Exhibition();
 		exhibition.setId(1L);
-		
+		exhibition.setLocation("Stadion 1");
 		exhibition.setExhibitionStart(new Date());
 		exhibition.setEnded(false);
 		
 		Exhibition exhibition2 = new Exhibition();
 		exhibition2.setId(2L);
-				
+		exhibition2.setLocation("Stadion 2");
 		exhibition2.setExhibitionStart(new Date());
 		exhibition2.setEnded(true);
 		
 		Exhibition exhibition3 = new Exhibition();
 		exhibition3.setId(3L);
-		
+		exhibition3.setLocation("Stadion 3");
 		exhibition3.setExhibitionStart(new Date());
 		exhibition3.setEnded(false);
 		
