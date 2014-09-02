@@ -27,7 +27,7 @@
 	<definition name="register" extends="standardLayout">
 		<put-attribute name="title" value="page.register.title" />
 		<put-attribute name="content"
-			value="/WEB-INF/jsp/content/user/register.jsp" />
+			value="/WEB-INF/jsp/content/userDetails/register.jsp" />
 	</definition>
 
 	<definition name="ranklist" extends="standardLayout">

@@ -8,43 +8,64 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.UserService;
+import rs.tfzr.FudbalT2.web.dto.UserDTO;
+import rs.tfzr.FudbalT2.web.validator.UserValidator;
 
 @Controller
 @RequestMapping(value = "/user")
 public class UserController 
 {
-
+	@Autowired
+	private UserValidator userValidator;
+	
 	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String viewRegistration(Map<String, Object> model) {
-		User userForm = new User();
-		model.put("userFormRegister", userForm);
-
+	public String viewRegistration(Model model) {
+		UserDTO userForm = new UserDTO();
+		model.addAttribute("userFormRegister", userForm);
 		return "register";
 	}
 
-	@RequestMapping(params = "register", method = RequestMethod.POST)
-	public String processRegistration(@Valid User user,
-			BindingResult bindingResult, Model model) {
+	@RequestMapping(params = "register", value = "/register", method = RequestMethod.POST)
+	public String processRegistration(UserDTO user, Model model) {
+		
+		DataBinder binder = new DataBinder(user);
+		binder.addValidators(userValidator);
+		binder.validate();
+		BindingResult bindingResult = binder.getBindingResult();
 
-		String viewUser;
 		if (!bindingResult.hasErrors()) {
-			userService.save(user);
-			viewUser = "redirect:registerSuccess";
+			User us = new User();
+			us.setEmail(user.getEmail());
+			us.setFirstName(user.getFirstName());
+			us.setLastName(user.getLastName());
+			us.setPassword(user.getPassword());
+			us.setPhoneNumber(user.getPhoneNumber());
+			us.setUsername(user.getEmail());
+			userService.save(us);
+			model.addAttribute("success", new String("success"));
 		} else {
-			model.addAttribute("user", user);
-			viewUser = "register";
+			for(ObjectError error: bindingResult.getGlobalErrors())
+			{
+				model.addAttribute(error.getDefaultMessage(), error.getCode());
+			}
+			user.setPassword("");
+			user.setRepeatPassword("");
+			model.addAttribute("userFormRegister", user);
 		}
 
-		return viewUser;
+		return "register";
 
 	}
 	

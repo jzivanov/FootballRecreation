@@ -30,7 +30,7 @@
 				</sec:authorize>
 				<sec:authorize ifNotGranted="ROLE_USER, ROLE_ADMIN">
 					<li><a class="login" href="<c:url value="/user/login"/>"> Login</a></li>
-					<li><a class="register" href="<c:url value="/register"/>">Register</a></li>
+					<li><a class="register" href="<c:url value="/user/register"/>">Register</a></li>
 				</sec:authorize>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

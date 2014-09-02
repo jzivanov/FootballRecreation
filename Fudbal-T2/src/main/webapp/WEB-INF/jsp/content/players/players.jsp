@@ -122,14 +122,10 @@
 				</thead>
 				<c:forEach items="${users}" var="user">
 					<tr>
-						<td><a href="<c:url value="/users/${user.id}" />"> <c:if
-									test="${not empty user.first}">
+						<td><a href="<c:url value="/users/${user.id}" />"> 
 									<c:out value="${user.firstName}" />
-								</c:if> <c:if test="${not empty user.last}">
 									<c:out value="${user.lastName}" />
-								</c:if> <c:if test="${not empty user.username}">
 									<c:out value="${user.username}" />
-								</c:if>
 						</a></td>
 						<td><a
 							href="<c:url value="/players/exhibition/${exhibitionId}/add/${user.id}" />">

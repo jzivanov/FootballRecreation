@@ -146,9 +146,9 @@ public class PlayerController {
 			for(User user: userService.findAll())
 			{
 				UserDTO dto = new UserDTO();
-				dto.setFirst(user.getFirstName());
+				dto.setFirstName(user.getFirstName());
 				dto.setId(user.getId());
-				dto.setLast(user.getLastName());
+				dto.setLastName(user.getLastName());
 				dto.setUsername(user.getUsername());
 				users.add(dto);
 			}

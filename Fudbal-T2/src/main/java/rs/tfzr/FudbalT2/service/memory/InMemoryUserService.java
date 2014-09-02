@@ -18,16 +18,22 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 		user.setEmail("zjovan.ost@gmail.com");
 		user.setPassword("123");
 		user.setUsername("zjovan.ost@gmail.com");
+		user.setFirstName("Jovan");
+		user.setLastName("Zivanov");
 		user.setAdmin(true);
 		
 		User user2 = new User();
 		user2.setEmail("pera@kojot");
 		user2.setPassword("123");
+		user2.setFirstName("pera kojot");
+		user2.setLastName("super genije");
 		user2.setUsername("pera@kojot");
 		
 		User user3 = new User();
 		user3.setEmail("bip@bip");
 		user3.setPassword("123");
+		user3.setFirstName("bip");
+		user3.setLastName("bip");
 		user3.setUsername("bip@bip");
 		
 		this.save(user);
@@ -45,11 +51,10 @@ public class InMemoryUserService extends AbstractInMemoryService<User>
 		{
 			if(user.getUsername().equals(username))
 			{
-				retUser = user;
-				break;
+				return retUser;
 			}
 		}
-		return retUser;
+		return null;
 	}
 
 }

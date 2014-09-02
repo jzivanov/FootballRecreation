@@ -9,6 +9,7 @@
 	<http pattern="/index.jsp" security="none"/>
 	<http pattern="/css/**" security="none"/>
 	<http pattern="/js/**" security="none"/>
+	<http pattern="/user/register" security="none"/>
 	
     <http auto-config='true'>
         <intercept-url pattern="/players/**" access="ROLE_USER, ROLE_ADMIN" />
