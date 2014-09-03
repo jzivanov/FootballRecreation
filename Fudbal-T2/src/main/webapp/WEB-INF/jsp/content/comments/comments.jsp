@@ -82,7 +82,9 @@
 				</c:choose>
 				<div class="${mainCommClass}">
   					<div class="panel-heading">
-    					<h3 class="panel-title">
+    						<c:url var="link" value="/user/users/image/${commentsMap.key.user.id}" />
+							<img src="${link}" height="40" width="40" class="img-rounded" />
+    					<h3 class="panel-title" style="display:inline;">
     						<a href="<c:url value="/users/${commentsMap.key.user.id}" />">
     							[<c:out value="${commentsMap.key.user.username}" />]
     						</a>
@@ -98,7 +100,7 @@
 								<fmt:message key="page.comments.remove" />
 							</a>
 							<a href="<c:url value="/comments/exhibition/${commentsMap.key.exhibition.id}/edit/${commentsMap.key.id}" />" >
-								<fmt:message key="page.comments.edit" />
+								<fmt:message key="common.action.edit" />
 							</a>
 						</c:if>
 						<a href="<c:url value="/comments/exhibition/${commentsMap.key.exhibition.id}/add/${commentsMap.key.id}" />">
@@ -118,7 +120,9 @@
 					</c:choose>
 					<div class="${subCommClass}" style="width:90%; margin-left:10%;">
   						<div class="panel-heading">
-    						<h3 class="panel-title">
+    						<c:url var="link" value="/user/users/image/${comments.user.id}" />
+							<img src="${link}" height="40" width="40" class="img-rounded" />
+    						<h3 class="panel-title" style="display:inline;">
     							<a href="<c:url value="/users/${comments.user.id}" />">
     								[<c:out value="${comments.user.username}" />]
     							</a>

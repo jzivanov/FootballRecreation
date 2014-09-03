@@ -1,5 +1,7 @@
 package rs.tfzr.FudbalT2.web.dto;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class UserDTO 
 {
 	private Long id;
@@ -11,6 +13,8 @@ public class UserDTO
 	private String password;
 	private String repeatPassword;
 	private boolean admin;
+	private byte[] image;
+	private ImageDTO imagedto;
 	
 	public Long getId() {
 		return id;
@@ -65,5 +69,17 @@ public class UserDTO
 	}
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
+	}
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	public ImageDTO getImagedto() {
+		return imagedto;
+	}
+	public void setImagedto(ImageDTO imagedto) {
+		this.imagedto = imagedto;
 	}
 }

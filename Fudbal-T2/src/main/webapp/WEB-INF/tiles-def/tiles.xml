@@ -93,5 +93,15 @@
 		<put-attribute name="title" value="page.users.title" />
 		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/editUser.jsp" />
 	</definition>
+	
+	<definition name="image" extends="standardLayout">
+		<put-attribute name="title" value="page.users.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/addEditImage.jsp" />
+	</definition>
+	
+	<definition name="showimg" extends="standardLayout">
+		<put-attribute name="title" value="page.users.title" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/userDetails/showimg.jsp" />
+	</definition>
 
 </tiles-definitions>

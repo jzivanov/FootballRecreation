@@ -33,6 +33,7 @@ public class User extends AbstractBaseEntity implements UserDetails
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
+	private byte[] image;
 	
 	// Spring security fields
 	private boolean accountNonExpired = true;
@@ -147,6 +148,14 @@ public class User extends AbstractBaseEntity implements UserDetails
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }

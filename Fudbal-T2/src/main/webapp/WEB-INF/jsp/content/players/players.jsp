@@ -47,13 +47,17 @@
 				<c:forEach items="${players}" var="player">
 					<tr class="info">
 						<c:if test="${player.team == home}">
-							<td><a href="<c:url value="/user/users/${player.userId}" />">
+							<td style="vertical-align: middle;">
+							<c:url var="link" value="/user/users/image/${player.userId}" />
+							<img src="${link}" height="60" width="60" class="img-rounded"/>
+							<a href="<c:url value="/user/users/${player.userId}" />"
+							style="font-size:22px; margin-left:10px;">
 									<c:out value="${player.firstName}"></c:out> <c:out
 										value="${player.lastName}"></c:out>
 							</a></td>
-							<td><fmt:message key="page.player.team.home" /></td>
+							<td style="vertical-align: middle;"><fmt:message key="page.player.team.home" /></td>
 							<sec:authorize ifAllGranted="ROLE_ADMIN">
-								<td><a
+								<td style="vertical-align: middle;"><a
 									href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/0" />">
 										<fmt:message key="page.player.team.none" />
 								</a> <a
@@ -67,13 +71,17 @@
 				<c:forEach items="${players}" var="player">
 					<tr class="active">
 						<c:if test="${player.team == away}">
-							<td><a href="<c:url value="/user/users/${player.userId}" />">
+							<td style="vertical-align: middle;">
+							<c:url var="link" value="/user/users/image/${player.userId}" />
+							<img src="${link}" height="60" width="60" class="img-rounded"/>
+							<a href="<c:url value="/user/users/${player.userId}" />"
+							style="font-size:22px; margin-left:10px;">
 									<c:out value="${player.firstName}"></c:out> <c:out
 										value="${player.lastName}"></c:out>
 							</a></td>
-							<td><fmt:message key="page.player.team.away" /></td>
+							<td style="vertical-align: middle;"><fmt:message key="page.player.team.away" /></td>
 							<sec:authorize ifAllGranted="ROLE_ADMIN">
-								<td><a
+								<td style="vertical-align: middle;"><a
 									href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/0" />">
 										<fmt:message key="page.player.team.none" />
 								</a> <a
@@ -87,13 +95,17 @@
 				<c:forEach items="${players}" var="player">
 					<tr>
 						<c:if test="${player.team == none}">
-							<td><a href="<c:url value="/user/users/${player.userId}" />">
+							<td style="vertical-align: middle;">
+							<c:url var="link" value="/user/users/image/${player.userId}" />
+							<img src="${link}" height="60" width="60" class="img-rounded"/>
+							<a href="<c:url value="/user/users/${player.userId}" />"
+							style="font-size:22px; margin-left:10px;">
 									<c:out value="${player.firstName}"></c:out> <c:out
 										value="${player.lastName}"></c:out>
 							</a></td>
-							<td><fmt:message key="page.player.team.none" /></td>
+							<td style="vertical-align: middle;"><fmt:message key="page.player.team.none" /></td>
 							<sec:authorize ifAllGranted="ROLE_ADMIN">
-								<td><a
+								<td style="vertical-align: middle;"><a
 									href="<c:url value="/players/exhibition/${player.exhibitionId}/player/${player.id}/team/1" />">
 										<fmt:message key="page.player.team.home" />
 								</a> <a

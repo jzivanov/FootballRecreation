@@ -1,29 +1,35 @@
 package rs.tfzr.FudbalT2.web.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.DataBinder;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.UserService;
+import rs.tfzr.FudbalT2.web.dto.ImageDTO;
 import rs.tfzr.FudbalT2.web.dto.UserDTO;
+import rs.tfzr.FudbalT2.web.validator.ImageValidator;
 import rs.tfzr.FudbalT2.web.validator.UserEditValidator;
 import rs.tfzr.FudbalT2.web.validator.UserValidator;
 
@@ -39,6 +45,9 @@ public class UserController
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ImageValidator imageValidator;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String viewRegistration(Model model) {
@@ -157,10 +166,26 @@ public class UserController
 		dto.setUsername(user.getEmail());
 		dto.setRepeatPassword(user.getPassword());
 		dto.setAdmin(user.isAdmin());
+		dto.setImage(user.getImage());
+		dto.setImagedto(new ImageDTO());
+		
 		User signeduserid = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.addAttribute("signeduserid", signeduserid.getId());
 		model.addAttribute("userform", dto);
 		return "edit-user";
+	}
+	
+	@RequestMapping(value = "/users/image/{userId}", method = RequestMethod.GET)
+	public void getImageUrl(@PathVariable Long userId, HttpServletResponse response, Model model)
+	{
+		response.setContentType("image/jpeg");
+		byte[] b = userService.findOne(userId).getImage();
+		try {
+			response.getOutputStream().write(b);
+			response.getOutputStream().flush();
+		} catch (IOException e) 
+		{
+		}
 	}
 	
 	@RequestMapping(params = "edit", value = "/users/edit", method = RequestMethod.POST)
@@ -180,12 +205,33 @@ public class UserController
 		{
 			dto.setEmail(dto.getUsername());
 		}
+		boolean imgerr = false;
+		if(!dto.getImagedto().getData().isEmpty())
+		{
+			System.out.println("dto image !null");
+			DataBinder binder = new DataBinder(dto.getImagedto());
+			binder.addValidators(imageValidator);
+			binder.validate();
+			BindingResult result = binder.getBindingResult();
+			if(!result.hasErrors())
+			{
+				System.out.println("DTO image !hasErrors");
+				user.setImage(dto.getImagedto().getData().getBytes());
+			}
+			else
+			{
+				System.out.println("DTO image hasErrors");
+				model.addAttribute("imgerrors", result.getAllErrors());
+				imgerr = true;
+			}
+		}
 		DataBinder binder = new DataBinder(dto);
 		binder.addValidators(userEditValidator);
 		binder.validate();
 		BindingResult bindingResult = binder.getBindingResult();
-		if(!bindingResult.hasErrors())
+		if(!bindingResult.hasErrors() && !imgerr)
 		{
+			System.out.println("!Main hasErrors");
 			user.setEmail(dto.getEmail());
 			user.setFirstName(dto.getFirstName());
 			user.setId(dto.getId());
@@ -199,8 +245,6 @@ public class UserController
 		} 
 		else 
 		{
-			System.out.println(dto.getPassword());
-			System.out.println(dto.getRepeatPassword());
 			for(ObjectError error: bindingResult.getGlobalErrors())
 			{
 				model.addAttribute(error.getDefaultMessage(), error.getCode());
@@ -212,3 +256,6 @@ public class UserController
 		return "edit-user";
 	}
 }
+
+
+

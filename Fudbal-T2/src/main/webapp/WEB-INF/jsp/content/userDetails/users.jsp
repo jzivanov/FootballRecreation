@@ -6,7 +6,7 @@
 		<sec:authorize ifAllGranted="ROLE_ADMIN">
 		<c:if test="${not empty disusers}">
 			<p style="padding: 10px; color:#fff; background-color: #31BC86;">
-				<strong>Nepotvrdjeni <fmt:message key="page.users.title" />:</strong>
+				<strong><fmt:message key="page.users.unconfirmed" /> <fmt:message key="page.users.title" />:</strong>
 			</p>
 			<div class="list-group" style="margin-left:10px;">
 				<c:set value="list-group-item" var="disclazz" />
@@ -35,7 +35,7 @@
 		</c:if>
 		</sec:authorize>
 		<p style="padding: 10px; color:#fff; background-color: #53DEA8;">
-			<strong>Registrovani <fmt:message key="page.users.title" />:</strong>
+			<strong><fmt:message key="page.users.registered" /> <fmt:message key="page.users.title" />:</strong>
 		</p>
 		<div class="list-group" style="margin-left:10px;">
 			<c:set value="list-group-item" var="clazz" />
@@ -64,10 +64,21 @@
 	</div>
 	<c:if test="${not empty user}">
 		<div class="col-md-8">
-			<div style="width: 90%; background-color: #B088BE; color:#fff; line-height: 60px; margin-bottom: 20px;">
-				<h4 style="border:1px solid #B088BE; display: inline; margin-left:20px;">
-					${user.firstName}
-					${user.lastName}</h4>
+			<div style="width: 90%; background-color: #B088BE; color:#fff; line-height: 60px; margin-bottom: 20px; padding:10px; border-radius:5px;">
+				<div class="row">
+					<div class="col-xs-12 col-sm-2">
+						<c:url var="link" value="/user/users/image/${user.id}" />
+						<div style="">
+							<img src="${link}" height="80" width="80" class="img-rounded"/>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-10">
+						<h1 style="border:1px solid #B088BE; display: inline; ">
+							${user.firstName}
+							${user.lastName}
+						</h1>
+					</div>
+				</div>
 			</div>
 				<div class="row" style="width: 90%; padding: 15px; border:1px solid #B088BE; border-left-width: 2px; margin-bottom:10px; margin-left:0px;">
 					<div class="col-md-4">
