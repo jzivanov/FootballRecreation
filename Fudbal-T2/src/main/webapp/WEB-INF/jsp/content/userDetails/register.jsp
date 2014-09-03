@@ -87,11 +87,11 @@
     			</div>
 			</div>
 			<div class="form-group">
-				<form:label path="phoneNumber" cssClass="col-sm-2 control-label">
+				<form:label path="phone" cssClass="col-sm-2 control-label">
 					<fmt:message key="page.register.form.phoneNumber" />
 				</form:label>
     			<div class="col-sm-10">
-    				<form:input path="phoneNumber" cssClass="form-control"/>
+    				<form:input path="phone" cssClass="form-control"/>
     			</div>
 			</div>
 			<c:choose>

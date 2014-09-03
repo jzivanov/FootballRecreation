@@ -89,8 +89,7 @@ public class PlayerController {
 			Model model)
 	{
 		Exhibition exhibition = exhibitionService.findOne(ide);
-		BindingResult bindingResult = exhibitionAvailable(exhibition);
-		if(!bindingResult.hasErrors())
+		if(exhibition != null)
 		{
 			DataBinder binder = new DataBinder(playerService.findOne(idp));
 			binder.setValidator(playerValidator);
@@ -104,10 +103,6 @@ public class PlayerController {
 			{
 				model.addAttribute("errors", results.getAllErrors());
 			}
-		}
-		else
-		{
-			model.addAttribute("errors", bindingResult.getAllErrors());
 		}
 		return "redirect:/players/exhibition/" + ide;
 	}

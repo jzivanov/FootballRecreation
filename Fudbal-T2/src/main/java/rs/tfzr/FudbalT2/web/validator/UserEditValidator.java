@@ -5,12 +5,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.service.UserService;
 import rs.tfzr.FudbalT2.web.dto.UserDTO;
 
 @Component
-public class UserValidator implements Validator
+public class UserEditValidator  implements Validator
 {
 	private final String EMPTY_FIELD = "page.register.validation.empty";
 	private final String USER_EXISTS = "page.register.validation.userExists";
@@ -33,8 +32,6 @@ public class UserValidator implements Validator
 			UserDTO user = (UserDTO)target;
 			if(user.getEmail() == null || user.getEmail().isEmpty())
 				errors.reject(EMPTY_FIELD, "erremail");
-			else if(userService.loadUserByUsername(user.getEmail()) != null)
-				errors.reject(USER_EXISTS, "erremail");
 			//Check email format
 			if(user.getPassword().isEmpty())
 				errors.reject(EMPTY_FIELD, "errpassword");
@@ -48,5 +45,4 @@ public class UserValidator implements Validator
 				errors.reject(EMPTY_FIELD, "errlastName");
 		}
 	}
-
 }

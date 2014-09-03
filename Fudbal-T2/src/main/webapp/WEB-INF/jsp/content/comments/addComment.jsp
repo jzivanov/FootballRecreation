@@ -11,8 +11,9 @@
 		<form:label path="title"><fmt:message key="page.comments.comment.title" /></form:label>
 		<form:input path="title"/>
 		<form:errors path="title" />
-		<form:input path="body"/>
+		<form:input path="body" />
 		<form:errors path="body" />
+	
 	</fieldset>
 	<div>
 		<button type="submit" name="save"><fmt:message key="common.action.save" /></button>

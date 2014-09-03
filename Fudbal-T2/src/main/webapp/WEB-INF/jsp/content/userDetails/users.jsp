@@ -114,12 +114,12 @@
 						<sec:authorize ifAllGranted="ROLE_USER">
 							<c:if test="${not empty signeduserid}">
 								<c:if test="${signeduserid == user.id}">
-  									<a role="button" href="#" class="btn btn-info">Edit</a>
+  									<a role="button" href="<c:url value="/user/users/${user.id}/edit" />" class="btn btn-info">Edit</a>
 								</c:if>
 							</c:if>
 						</sec:authorize>
 						<sec:authorize ifAllGranted="ROLE_ADMIN">
-  							<a role="button" href="#" class="btn btn-info">Edit</a>
+  							<a role="button" href="<c:url value="/user/users/${user.id}/edit" />" class="btn btn-info">Edit</a>
 							<c:choose>
 								<c:when test="${!user.enabled}">
   									<a href="<c:url value="/user/users/${user.id}/enable?enable" />" role="button" class="btn btn-success">Enable</a>

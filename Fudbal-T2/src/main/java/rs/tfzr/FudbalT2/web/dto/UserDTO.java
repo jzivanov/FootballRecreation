@@ -7,9 +7,11 @@ public class UserDTO
 	private String lastName;
 	private String username;
 	private String email;
-	private String phoneNumber;
+	private String phone;
 	private String password;
 	private String repeatPassword;
+	private boolean admin;
+	
 	public Long getId() {
 		return id;
 	}
@@ -40,11 +42,11 @@ public class UserDTO
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(String phoneNumber) {
+		this.phone = phoneNumber;
 	}
 	public String getPassword() {
 		return password;
@@ -57,5 +59,11 @@ public class UserDTO
 	}
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
+	}
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 }
