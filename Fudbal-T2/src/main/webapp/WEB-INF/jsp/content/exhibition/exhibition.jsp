@@ -9,7 +9,7 @@
 	<form:input path="location"/>
 	<form:errors path="location"></form:errors>
 	<form:label path="startDate"><fmt:message key="page.exhibition.new.startDate" /></form:label>
-	<form:input path="startDate"/>
+	<form:input type="datetime-local" path="startDate" />
 	<form:errors path="startDate"></form:errors>
 	<div>
 		<button type="submit" name="save"><fmt:message key="common.action.save" /></button>
