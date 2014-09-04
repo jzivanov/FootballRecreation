@@ -11,8 +11,7 @@ import rs.tfzr.FudbalT2.web.dto.UserDTO;
 @Component
 public class UserEditValidator  implements Validator
 {
-	private final String EMPTY_FIELD = "page.register.validation.empty";
-	private final String USER_EXISTS = "page.register.validation.userExists";
+	private final String EMPTY_FIELD = "common.field.empty";
 	private final String PASS_LENGTH = "page.register.validation.passLength";
 	private final String PASS_NOT_MATCH = "page.register.validation.passNotMatch";
 	

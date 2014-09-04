@@ -80,7 +80,7 @@
 						<c:set var="mainCommClass" value="panel panel-default" />
 					</c:otherwise>
 				</c:choose>
-				<div class="${mainCommClass}">
+				<div id="${commentsMap.key.id}" class="${mainCommClass}">
   					<div class="panel-heading">
     						<c:url var="link" value="/user/users/image/${commentsMap.key.user.id}" />
 							<img src="${link}" height="40" width="40" class="img-rounded" />
@@ -118,8 +118,8 @@
 							<c:set var="subCommClass" value="panel panel-default" />
 						</c:otherwise>
 					</c:choose>
-					<div class="${subCommClass}" style="width:90%; margin-left:10%;">
-  						<div class="panel-heading">
+					<div id="${comments.id}" class="${subCommClass}" style="width:90%; margin-left:10%;">
+  						<div class="panel-heading" >
     						<c:url var="link" value="/user/users/image/${comments.user.id}" />
 							<img src="${link}" height="40" width="40" class="img-rounded" />
     						<h3 class="panel-title" style="display:inline;">
@@ -136,6 +136,9 @@
 							<c:if test="${userId == comments.user.id}">
 								<a href="<c:url value="/comments/remove/${comments.id}" />">
 									<fmt:message key="page.comments.remove" />
+								</a>
+								<a href="<c:url value="/comments/exhibition/${comments.exhibition.id}/edit/${comments.id}" />" >
+									<fmt:message key="common.action.edit" />
 								</a>
 							</c:if>
   						</div>

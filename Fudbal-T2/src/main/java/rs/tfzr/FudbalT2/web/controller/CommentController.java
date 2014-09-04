@@ -96,7 +96,7 @@ public class CommentController
 	}
 
 	@RequestMapping(value = "/exhibition/{exhibitionId}/edit/{commentId}", method = RequestMethod.GET)
-	public String edit(@PathVariable Long exhibitionId, Comment comment, Model model)
+	public String edit(@PathVariable Long exhibitionId, @PathVariable Long commentId, Model model)
 	{
 		Exhibition exhibition = exhibitionService.findOne(exhibitionId);
 		DataBinder binder = new DataBinder(exhibition);
@@ -106,12 +106,13 @@ public class CommentController
 		
 		if(!results.hasErrors())
 		{
+			Comment comment = commentService.findOne(commentId);
 			CommentDTO dto = new CommentDTO();
 			dto.setId(comment.getId());
 			dto.setBody(comment.getBody());
 			dto.setExhibitionId(exhibitionId);
 			if(comment.getMainComment() != null)
-				dto.setMainCommentId(comment.getMainComment().getId());
+				dto.setMainCommentId(new Long(comment.getMainComment().getId()));
 			dto.setTitle(comment.getTitle());
 			model.addAttribute("comment", dto);
 			
@@ -130,26 +131,35 @@ public class CommentController
 	@RequestMapping(params = "save", method = RequestMethod.POST)
 	public String setComment(@Valid CommentDTO comment, BindingResult bindingResult, Model model)
 	{
+		Long retCommentId = null;
 		if(!bindingResult.hasErrors())
 		{
 			Comment comm = new Comment();
 			if(comment.getId() != null)
-				comm.setId(comm.getId());
+			{
+				comm.setId(comment.getId());
+			}
 			comm.setExhibition(exhibitionService.findOne(comment.getExhibitionId()));
 			comm.setBody(comment.getBody());
 			if(comment.getMainCommentId() != null)
+			{
 				comm.setMainComment(commentService.findOne(comment.getMainCommentId()));
+			}
 			comm.setTitle(comment.getTitle());
 			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			comm.setUser(user);
 			
-			commentService.save(comm);
+			retCommentId = commentService.save(comm).getId();
 		}
 		else
 		{
 			model.addAttribute("comment", comment);
 		}
-		return "redirect:/comments/exhibition/" + comment.getExhibitionId();
+		
+		String ret = "redirect:/comments/exhibition/" + comment.getExhibitionId();
+		if(retCommentId != null)
+			ret = new String(ret + "#" + retCommentId);
+		return ret;
 	}
 	
 	@RequestMapping(params = "cancel", method = RequestMethod.POST)

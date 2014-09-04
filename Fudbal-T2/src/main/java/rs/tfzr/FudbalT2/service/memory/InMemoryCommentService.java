@@ -36,7 +36,7 @@ public class InMemoryCommentService extends AbstractInMemoryService<Comment> imp
 		List<Comment> commRes = new ArrayList<Comment>();
 		for(Comment comm: findAll())
 		{
-			if(comm.getMainComment() != null && comm.getMainComment().getId() != commentId)
+			if(comm.getMainComment() != null && comm.getMainComment().getId() == commentId)
 				commRes.add(comm);
 		}
 		return commRes;
