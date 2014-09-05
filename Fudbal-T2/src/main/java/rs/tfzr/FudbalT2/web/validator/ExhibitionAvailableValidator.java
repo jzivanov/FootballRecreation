@@ -26,6 +26,7 @@ public class ExhibitionAvailableValidator implements Validator
 		if(target != null && supports(target.getClass()))
 		{
 			Exhibition exhibition = (Exhibition) target;
+			System.out.println(exhibition.getEnded());
 			if(!exhibition.getEnded())
 				errors.reject(EXHIBITION_MUST_BE_OVER);
 		}

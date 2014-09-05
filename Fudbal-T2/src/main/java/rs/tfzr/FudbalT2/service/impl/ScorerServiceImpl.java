@@ -4,6 +4,7 @@
 package rs.tfzr.FudbalT2.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -69,7 +70,7 @@ public class ScorerServiceImpl implements ScorerService {
 	 * rs.tfzr.FudbalT2.service.ScorerService#listAllScorers(java.lang.Long)
 	 */
 	@Override
-	public List<Scorers> listAllScorers(Long exhibitionId) {
+	public Map<Scorers, Short> getRankList(Long exhibitionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -80,9 +81,21 @@ public class ScorerServiceImpl implements ScorerService {
 	 * @see rs.tfzr.FudbalT2.service.ScorerService#getRankList()
 	 */
 	@Override
-	public List<Scorers> getRankList() {
+	public Map<Scorers, Short> getRankList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public short getUserScoreCount(Long playerId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public byte getPlayerScoreCount(Long playerId, Long exhibitionId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -130,19 +130,27 @@
 							</c:if>
 						</sec:authorize>
 						<sec:authorize ifAllGranted="ROLE_ADMIN">
-  							<a role="button" href="<c:url value="/user/users/${user.id}/edit" />" class="btn btn-info">Edit</a>
+  							<a role="button" href="<c:url value="/user/users/${user.id}/edit" />" class="btn btn-info">
+  								<fmt:message key="common.action.edit" />
+  							</a>
 							<c:choose>
 								<c:when test="${!user.enabled}">
-  									<a href="<c:url value="/user/users/${user.id}/enable?enable" />" role="button" class="btn btn-success">Enable</a>
+  									<a href="<c:url value="/user/users/${user.id}/enable?enable" />" role="button" class="btn btn-success">
+  										<fmt:message key="common.action.enable" />
+  									</a>
 								</c:when>
 								<c:otherwise>
 									<c:if test="${user.id != signeduserid}">
-  										<a href="<c:url value="/user/users/${user.id}/enable?disable" />" role="button" class="btn btn-warning">Disable</a>
+  										<a href="<c:url value="/user/users/${user.id}/enable?disable" />" role="button" class="btn btn-warning">
+  											<fmt:message key="common.action.disable" />
+  										</a>
 									</c:if>
 								</c:otherwise>
 							</c:choose>
 							<c:if test="${user.id != signeduserid}">
-  								<a href="<c:url value="/user/users/${user.id}/remove" />" role="button" class="btn btn-danger">Remove</a>
+  								<a href="<c:url value="/user/users/${user.id}/remove" />" role="button" class="btn btn-danger">
+  									<fmt:message key="common.action.remove" />
+  								</a>
 							</c:if>
 						</sec:authorize>
 					</div>

@@ -78,13 +78,13 @@ public class InMemoryPlayerServiceTest
 	@Test
 	public void findAllTest()
 	{
-		List<Player> list = service.findAll(1L);
+		List<Player> list = service.findSignedPlayers(1L);
 		Assert.assertNotNull(list);
 		Assert.assertTrue(list.size() == 3);
-		list = service.findAll(2L);
+		list = service.findSignedPlayers(2L);
 		Assert.assertNotNull(list);
 		Assert.assertTrue(list.size() == 2);
-		list = service.findAll(34L);
+		list = service.findSignedPlayers(34L);
 		Assert.assertTrue(list.isEmpty());
 	}
 	

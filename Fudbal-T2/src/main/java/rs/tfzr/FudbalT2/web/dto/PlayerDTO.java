@@ -10,6 +10,7 @@ public class PlayerDTO {
 	private Long userId;
 	private String firstName;
 	private String lastName;
+	private String name;
 	private Long exhibitionId;
 	private Date exhibitionStart;
 	public Long getId() {
@@ -53,5 +54,11 @@ public class PlayerDTO {
 	}
 	public void setExhibitionStart(Date exhibitionStart) {
 		this.exhibitionStart = exhibitionStart;
+	}
+	public String getName() {
+		return this.lastName + " " + this.firstName;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

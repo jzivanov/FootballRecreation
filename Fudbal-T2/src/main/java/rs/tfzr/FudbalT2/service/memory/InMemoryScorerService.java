@@ -23,59 +23,98 @@ public class InMemoryScorerService extends AbstractInMemoryService<Scorers>
 		implements ScorerService {
 	
 	@Override
-	public List<Scorers> listAllScorers(Long exhibitionId) {
-		List<Scorers> list = new ArrayList<>();
+	public Map<Scorers, Short> getRankList(Long exhibitionId) {
+		Map<Scorers, Short> map = new HashMap<>();
 		for (Scorers scorer : findAll()) {
-			if (scorer.getExhibition().getId() == exhibitionId)
-				list.add(scorer);
+			if (scorer.getExhibition().getId() == exhibitionId
+				&& !containsScorer(map, scorer))
+					map.put(scorer, (short) getPlayerScoreCount(scorer.getPlayer().getId(), exhibitionId));
 		}
-		return list;
+		return sortByComparator(map);
+	}
+	
+	private boolean containsScorer(Map<Scorers, Short> map, Scorers scorer)
+	{
+		for(Scorers s: map.keySet())
+		{
+			if(s.getExhibition().getId() == scorer.getExhibition().getId()
+					&& s.getPlayer().getId() == scorer.getPlayer().getId())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean containsUser(Map<Scorers, Short> map, Scorers scorer)
+	{
+		for(Scorers s: map.keySet())
+		{
+			if(s.getPlayer().getUser().getId() == scorer.getPlayer().getUser().getId())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
-	public List<Scorers> getRankList() {
-		List<Scorers> rankList = new ArrayList<>();
-		Map<Scorers, Integer> map = new HashMap<>();
+	public Map<Scorers, Short> getRankList() {
+		Map<Scorers, Short> map = new HashMap<>();
 		for (Scorers scorer : findAll()) {
-			int num = 0;
-			for (Scorers scorer2 : findAll()) {
-				if (scorer.getPlayer().getUser().getId() == scorer2.getPlayer()
-						.getUser().getId())
-					num++;
-			}
-			boolean exists = false;
-			for (Scorers scorer2 : map.keySet()) {
-				if (scorer.getId() != scorer2.getId()
-						&& scorer.getPlayer().getUser().getId() == scorer2
-								.getPlayer().getUser().getId()) {
-					exists = true;
-				}
-			}
-			if (!exists)
+			if (!containsUser(map, scorer))
+			{
+				short num = getUserScoreCount(scorer.getPlayer().getUser().getId());
 				map.put(scorer, num);
+			}
 		}
-		rankList.addAll(sortByComparator(map).keySet());
-		return rankList;
+		return sortByComparator(map);
 	}
 
-	private static Map<Scorers, Integer> sortByComparator(
-			Map<Scorers, Integer> unsortMap) {
-		List<Map.Entry<Scorers, Integer>> list = new LinkedList<Map.Entry<Scorers, Integer>>(
+	private static Map<Scorers, Short> sortByComparator(
+			Map<Scorers, Short> unsortMap) {
+		List<Map.Entry<Scorers, Short>> list = new LinkedList<Map.Entry<Scorers, Short>>(
 				unsortMap.entrySet());
 
-		Collections.sort(list, new Comparator<Map.Entry<Scorers, Integer>>() {
-			public int compare(Map.Entry<Scorers, Integer> o1,
-					Map.Entry<Scorers, Integer> o2) {
+		Collections.sort(list, new Comparator<Map.Entry<Scorers, Short>>() {
+			public int compare(Map.Entry<Scorers, Short> o1,
+					Map.Entry<Scorers, Short> o2) {
 				return (o2.getValue()).compareTo(o1.getValue());
 			}
 		});
 
-		Map<Scorers, Integer> sortedMap = new LinkedHashMap<Scorers, Integer>();
-		for (Iterator<Map.Entry<Scorers, Integer>> it = list.iterator(); it
+		Map<Scorers, Short> sortedMap = new LinkedHashMap<Scorers, Short>();
+		for (Iterator<Map.Entry<Scorers, Short>> it = list.iterator(); it
 				.hasNext();) {
-			Map.Entry<Scorers, Integer> entry = it.next();
+			Map.Entry<Scorers, Short> entry = it.next();
 			sortedMap.put(entry.getKey(), entry.getValue());
 		}
 		return sortedMap;
+	}
+
+	@Override
+	public short getUserScoreCount(Long userId) 
+	{
+		short scores = 0;
+		List<Scorers> list = findAll();
+		for(Scorers scorer: list)
+		{
+			if(scorer.getPlayer().getUser().getId() == userId)
+				scores++;
+		}
+		return scores;
+	}
+
+	@Override
+	public byte getPlayerScoreCount(Long playerId, Long exhibitionId) {
+		byte scores = 0;
+		List<Scorers> list = findAll();
+		for(Scorers scorer: list)
+		{
+			if(scorer.getExhibition().getId() == exhibitionId
+					&& scorer.getPlayer().getId() == playerId)
+				scores++;
+		}
+		return scores;
 	}
 }

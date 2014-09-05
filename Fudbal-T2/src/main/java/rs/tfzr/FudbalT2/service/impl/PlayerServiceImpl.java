@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.model.Player.Team;
+import rs.tfzr.FudbalT2.model.User;
 import rs.tfzr.FudbalT2.repository.PlayerRepository;
 import rs.tfzr.FudbalT2.service.PlayerService;
 
@@ -39,7 +40,7 @@ public class PlayerServiceImpl implements PlayerService {
 	}
 
 	@Override
-	public List<Player> findAll(Long exhibitionId) {
+	public List<Player> findSignedPlayers(Long exhibitionId) {
 		return playerRepository.listAllPlayersOfExhibition(exhibitionId);
 	}
 
@@ -51,6 +52,12 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Override
 	public Player findOne(Long userId, Long exhibitionId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findUnsignedUsers(Long exhibitionId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

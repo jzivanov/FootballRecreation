@@ -57,7 +57,7 @@ public class ExhibitionValidator implements Validator {
 		
 		if(target != null && supports(target.getClass())){
 			Exhibition exhibition = (Exhibition) target;
-			List<Player> players = playerService.findAll(exhibition.getId());
+			List<Player> players = playerService.findSignedPlayers(exhibition.getId());
 			User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			for (Player player : players) {
 				if(player.getUser().getId() == user.getId())

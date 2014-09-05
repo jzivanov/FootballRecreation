@@ -27,6 +27,7 @@
                 <bean class="rs.tfzr.FudbalT2.web.converter.StringToTeamConverter" />
                 <bean class="rs.tfzr.FudbalT2.web.converter.StringToCommentConverter" />
                 <bean class="rs.tfzr.FudbalT2.web.converter.StringToUserConverter" />
+                <bean class="rs.tfzr.FudbalT2.web.converter.StringToExhibitionConverter" />
             </list>
         </property>
     </bean>

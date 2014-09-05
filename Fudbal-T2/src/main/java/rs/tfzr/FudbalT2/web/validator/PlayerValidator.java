@@ -29,7 +29,7 @@ public class PlayerValidator implements Validator
 		if(target != null && supports(target.getClass()))
 		{
 			Player plr = (Player)target;
-			List<Player> players = playerService.findAll(plr.getExhibition().getId());
+			List<Player> players = playerService.findSignedPlayers(plr.getExhibition().getId());
 
 			boolean played = false;
 			for(Player player: players)

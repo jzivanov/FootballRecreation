@@ -95,7 +95,11 @@ public class Scorers extends AbstractBaseEntity {
 			return false;
 		if (!super.equals(o))
 			return false;
-
+		
+		Scorers scorer = (Scorers)o;
+		if(player.getId() != scorer.getId() && exhibition.getId() != scorer.getId())
+			return false;
+		
 		return true;
 	}
 

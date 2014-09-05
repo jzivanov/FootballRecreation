@@ -17,10 +17,8 @@
 			<div class="panel-heading">
 				<div class="row">
 					<div class="col-xs-12 col-sm-2">
-						<c:if test="${not empty userform.image}">
-							<c:url var="link" value="/user/users/image/${userform.id}" />
-							<img src="${link}" height="80" width="80" class="img-rounded"/>
-						</c:if>
+						<c:url var="link" value="/user/users/image/${userform.id}" />
+						<img src="${link}" height="80" width="80" class="img-rounded"/>
 					</div>
 					<div class="col-xs-12 col-sm-10">
     					<h1 class="panel-title" style="display:inline; font-size:32px;">
@@ -142,10 +140,10 @@
   									</c:otherwise>
   								</c:choose>
   								<label class="btn btn-default ${adminc}">
-    								<input type="radio" name="admin" id="adminno" ${admin}> DA
+    								<input type="radio" name="admin" id="adminno" ${admin}> <fmt:message key="common.action.yes" />
   								</label>
  								<label class="btn btn-default ${notadminc}">
-    								<input type="radio" name="admin" id="adminno" ${notadmin}> NE
+    								<input type="radio" name="admin" id="adminno" ${notadmin}> <fmt:message key="common.action.no" />
   								</label>
 								</div>
 							</div>

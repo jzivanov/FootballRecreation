@@ -63,13 +63,13 @@ public class PlayerController {
 		Exhibition exhibition = exhibitionService.findOne(id);
 		if(exhibition != null)
 		{
-			model.addAttribute("exhibitionId", id);
+			model.addAttribute("exhibitionId", exhibition.getId());
 			model.addAttribute("exhibitionStart", exhibition.getExhibitionStart());
 			List<PlayerDTO> players = new ArrayList<PlayerDTO>();
-			for(Player player: playerService.findAll(id))
+			for(Player player: playerService.findSignedPlayers(exhibition.getId()))
 			{
 				PlayerDTO dto = new PlayerDTO();
-				dto.setExhibitionId(id);
+				dto.setExhibitionId(exhibition.getId());
 				dto.setExhibitionStart(exhibition.getExhibitionStart());
 				dto.setFirstName(player.getUser().getFirstName());
 				dto.setId(player.getId());
@@ -115,13 +115,13 @@ public class PlayerController {
 		BindingResult bindingResult = exhibitionAvailable(exhibition);
 		if(!bindingResult.hasErrors())
 		{
-			model.addAttribute("exhibitionId", exhibitionId);
+			model.addAttribute("exhibitionId", exhibition.getId());
 			model.addAttribute("exhibitionStart", exhibition.getExhibitionStart());
 			List<PlayerDTO> players = new ArrayList<PlayerDTO>();
-			for(Player player: playerService.findAll(exhibitionId))
+			for(Player player: playerService.findSignedPlayers(exhibition.getId()))
 			{
 				PlayerDTO dto = new PlayerDTO();
-				dto.setExhibitionId(exhibitionId);
+				dto.setExhibitionId(exhibition.getId());
 				dto.setExhibitionStart(exhibition.getExhibitionStart());
 				dto.setFirstName(player.getUser().getFirstName());
 				dto.setId(player.getId());
@@ -133,7 +133,9 @@ public class PlayerController {
 			model.addAttribute("players", players);
 			
 			List<UserDTO> users = new ArrayList<UserDTO>();
-			for(User user: userService.findAll())
+			List<User> unsigned = playerService.findUnsignedUsers(exhibitionId);
+			System.out.println(unsigned.size());
+			for(User user: unsigned)
 			{
 				UserDTO dto = new UserDTO();
 				dto.setFirstName(user.getFirstName());
@@ -141,22 +143,6 @@ public class PlayerController {
 				dto.setLastName(user.getLastName());
 				dto.setUsername(user.getUsername());
 				users.add(dto);
-			}
-			
-			List<UserDTO> userList = new ArrayList<UserDTO>();
-			for(UserDTO user: users)
-			{
-				boolean find = false;
-				for(PlayerDTO player: players)
-				{
-					if(user.getId() == player.getUserId())
-					{
-						find = true;
-						break;
-					}
-				}
-				if(!find)
-					userList.add(user);
 			}
 			model.addAttribute("users", users);
 		}

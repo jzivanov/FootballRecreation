@@ -27,6 +27,8 @@
 			 			<a href="<c:url value="/exhibitions" />"><fmt:message key="page.exhibition.title" /></a>
 			 		</li>
 			 		<li><a href="<c:url value="/user/users" />"><fmt:message key="page.users.title" /></a>
+			 		<li><a href="<c:url value="/mvp" />"><fmt:message key="page.mvp.title" /></a></li>
+			 		<li><a href="<c:url value="/scorers" />"><fmt:message key="page.scorers.title" /></a></li>
 				</sec:authorize>
 				<sec:authorize ifNotGranted="ROLE_USER, ROLE_ADMIN">
 					<li><a class="login" href="<c:url value="/user/login"/>"> Login</a></li>

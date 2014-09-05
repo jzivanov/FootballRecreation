@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import rs.tfzr.FudbalT2.model.Exhibition;
 import rs.tfzr.FudbalT2.model.MVP;
 import rs.tfzr.FudbalT2.model.Player;
 import rs.tfzr.FudbalT2.repository.MvpRepository;
@@ -45,9 +46,21 @@ public class MvpServiceImpl implements MvpService {
 	}
 
 	@Override
-	public boolean playerVoted(Long userId, Long exhibitionId) {
+	public Player userVoted(Long userId, Long exhibitionId) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
+	}
+
+	@Override
+	public Exhibition getLastAvailable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Player> getMvpHistory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

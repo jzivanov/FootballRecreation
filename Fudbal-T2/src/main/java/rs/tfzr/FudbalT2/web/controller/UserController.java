@@ -1,17 +1,26 @@
 package rs.tfzr.FudbalT2.web.controller;
 
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.io.IOUtils;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +57,9 @@ public class UserController
 	
 	@Autowired
 	private ImageValidator imageValidator;
+	
+	@Autowired
+	private ServletContext context;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String viewRegistration(Model model) {
@@ -178,13 +190,30 @@ public class UserController
 	@RequestMapping(value = "/users/image/{userId}", method = RequestMethod.GET)
 	public void getImageUrl(@PathVariable Long userId, HttpServletResponse response, Model model)
 	{
-		response.setContentType("image/jpeg");
-		byte[] b = userService.findOne(userId).getImage();
-		try {
-			response.getOutputStream().write(b);
-			response.getOutputStream().flush();
-		} catch (IOException e) 
+		byte[] img = userService.findOne(userId).getImage();
+		if(img == null || img.length == 0)
 		{
+			try 
+			{
+				InputStream res = context.getResourceAsStream("/WEB-INF/img/user.png");
+				img = IOUtils.toByteArray(res);
+				response.getOutputStream().write(img);
+				response.getOutputStream().flush();
+			} 
+			catch (IOException e) 
+			{
+			}
+		}
+		else
+		{
+			try
+			{
+				response.getOutputStream().write(img);
+				response.getOutputStream().flush();
+			}
+			catch (IOException e) 
+			{
+			}
 		}
 	}
 	
@@ -208,19 +237,16 @@ public class UserController
 		boolean imgerr = false;
 		if(!dto.getImagedto().getData().isEmpty())
 		{
-			System.out.println("dto image !null");
 			DataBinder binder = new DataBinder(dto.getImagedto());
 			binder.addValidators(imageValidator);
 			binder.validate();
 			BindingResult result = binder.getBindingResult();
 			if(!result.hasErrors())
 			{
-				System.out.println("DTO image !hasErrors");
 				user.setImage(dto.getImagedto().getData().getBytes());
 			}
 			else
 			{
-				System.out.println("DTO image hasErrors");
 				model.addAttribute("imgerrors", result.getAllErrors());
 				imgerr = true;
 			}
@@ -231,7 +257,6 @@ public class UserController
 		BindingResult bindingResult = binder.getBindingResult();
 		if(!bindingResult.hasErrors() && !imgerr)
 		{
-			System.out.println("!Main hasErrors");
 			user.setEmail(dto.getEmail());
 			user.setFirstName(dto.getFirstName());
 			user.setId(dto.getId());
