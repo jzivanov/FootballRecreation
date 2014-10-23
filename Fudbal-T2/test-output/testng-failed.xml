@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="rs.tfzr.FudbalT2.service.memory.InMemoryUserServiceTest">
+        <methods>
+          <include name="disabledUsers"/>
+          <include name="enabledUsers"/>
+          <include name="loadUserByUsername"/>
+          <include name="InMemoryUserService"/>
+        </methods>
+      </class> <!-- rs.tfzr.FudbalT2.service.memory.InMemoryUserServiceTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

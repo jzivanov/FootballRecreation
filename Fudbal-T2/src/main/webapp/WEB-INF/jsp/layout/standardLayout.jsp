@@ -36,8 +36,8 @@
 				</sec:authorize>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<c:url value="/home?lang=sr" />"><fmt:message key="common.header.language.sr" /></a></li>
-				<li><a href="<c:url value="/home?lang=en" />"><fmt:message key="common.header.language.en" /></a></li>
+				<li><a href="<c:url value="?lang=sr" />"><fmt:message key="common.header.language.sr" /></a></li>
+				<li><a href="<c:url value="?lang=en" />"><fmt:message key="common.header.language.en" /></a></li>
 				<sec:authorize ifAnyGranted="ROLE_USER, ROLE_ADMIN">
 					<li class="dropdown">
           				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message key="common.header.user" /><span class="caret"></span></a>
